@@ -73,6 +73,7 @@ const CIRCLE = 2;
 let g_selectedColor=[1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 5;
 let g_selectedType = POINT;
+let g_selectedSegments = 2;
 
 function addActionsForHtmlUI(){
 
@@ -92,6 +93,7 @@ function addActionsForHtmlUI(){
 
   //size slider events
   document.getElementById('sizeSlide').addEventListener('mouseup',function() {g_selectedSize=this.value;});
+  document.getElementById('segmentSlide').addEventListener('mouseup',function() {g_selectedSegments=this.value;});
 
 }
 
@@ -140,6 +142,7 @@ function click(ev) {
   point.position=[x, y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
+  point.segments=g_selectedSegments;
   g_shapesList.push(point);
   
   // g_points.push([x, y]); // Store the coordinates to g_points array

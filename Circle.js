@@ -11,6 +11,7 @@ class Circle{
     var xy = this.position;
     var rgba = this.color;
     var size = this.size;
+    var segments = this.segments;
     // var xy = g_points[i];
     // var rgba = g_colors[i];
     // var size = g_sizes[i];
