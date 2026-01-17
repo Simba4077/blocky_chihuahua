@@ -1,3 +1,16 @@
+class pictureTriangle{
+  constructor(vertices,color){
+    this.type='pictureTriangle';
+    this.vertices=vertices;
+    this.color=color;
+  }
+
+  render(){
+    gl.uniform4f(u_FragColor, this.color[0], this.color[1], this.color[2], this.color[3]);
+    drawTriangle(this.vertices);
+  }
+}
+
 class Triangle{
   constructor(){
     this.type='triangle';

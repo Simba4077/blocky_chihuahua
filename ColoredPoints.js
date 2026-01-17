@@ -85,6 +85,7 @@ function addActionsForHtmlUI(){
   document.getElementById('pointButton').onclick = function() {g_selectedType=POINT};
   document.getElementById('triButton').onclick = function() {g_selectedType=TRIANGLE};
   document.getElementById('circleButton').onclick = function() {g_selectedType=CIRCLE};
+  document.getElementById('draw').onclick = function() {drawPicture();};
 
   //color slider events
   document.getElementById('redSlide').addEventListener('mouseup',function() { g_selectedColor[0] = this.value/100; });
@@ -194,4 +195,95 @@ function sendTextToHTML(text, htmlID){
     return;
   }
   htmlElm.innerHTML = text;
+}
+
+function drawPicture(){
+  g_shapesList = [];
+  g_shapesList.push(
+
+    // S shape
+    new pictureTriangle(
+      [.4,.2,  .4,.3,  0.1,0.3],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [0.1,0.2,  0.1,0.3,  0.4,0.2],
+      [0,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.2,  0.1,0.2,  0.1,0.0],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.2,  0.1,0.0,  0.2,0.0],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.0,  0.4,0.1,  0.2,0.1],
+      [0,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.0,  0.4,0.0,  0.4,0.1],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.4,0.0,  0.4,0.1],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.4,-0.2,  0.4,0.0],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.3,-0.2,  0.4,-0.2],
+      [0,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.1,-0.1,  0.3,-0.1,  0.3,-0.2],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.1,-0.1,  0.1,-0.2,  0.3,-0.2],
+      [1,0,0,1]
+    ),
+
+    //back fin 
+    new pictureTriangle(
+      [0.45,0.3,  0.5,0.0,  0.7,0.15],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.45,-0.3,  0.5,0.0,  0.7,-0.15],
+      [0,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.5,0.0,  0.7,0.15],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,-0.1,  0.5,0.0,  0.7,-0.15],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.5,0.0,  0.75,-0.1],
+      [0,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.9,0.1,  0.9,-0.1],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.75,-0.1,  0.9,-0.1],
+      [1,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.95,0.3,  0.9,0.1],
+      [1,1,0,1]
+    ),
+    new pictureTriangle(
+      [0.75,-0.1,  0.95,-0.3,  0.9,-0.1],
+      [0,1,0,1]
+    ),
+  );
+  renderAllShapes();
 }
