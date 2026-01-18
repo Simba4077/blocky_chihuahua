@@ -101,6 +101,9 @@ function addActionsForHtmlUI(){
 
   //alpha slider events
   document.getElementById('alphaSlide').addEventListener('mouseup',function() {g_alpha = this.value/100;});
+
+  //replay button event
+  document.getElementById('replayButton').onclick = function() {replayDrawing()};
 }
 
 function main() {
@@ -180,6 +183,21 @@ function convertCoordinatesEventToGL(ev) {
   x = ((x - rect.left) - canvas.width/2)/(canvas.width/2);
   y = (canvas.height/2 - (y - rect.top))/(canvas.height/2);
   return([x, y]);
+}
+
+function replayDrawing(){
+  //clear the canvas
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  let i = 0;
+  var delay = 20;
+  var timer = setInterval(() => {
+    if(i>=g_shapesList.length){
+      clearInterval(timer);
+      return;
+    }
+    g_shapesList[i].render();
+    i++;
+  }, delay);
 }
 
 function renderAllShapes(){
