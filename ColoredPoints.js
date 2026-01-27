@@ -123,12 +123,15 @@ function main() {
   canvas.onmousedown = click;
   canvas.onmousemove = function(ev) { if (ev.buttons == 1){ click(ev) } };
 
-  
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  renderAllShapes();
-  
+  //add blending
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  // Clear <canvas>
+  gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
 
@@ -215,19 +218,13 @@ function renderAllShapes(){
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // var len = g_shapesList.length;
-  // for(var i = 0; i < len; i++) {
-  //   g_shapesList[i].render();
-  // } 
-  drawTriangle3D( [-1.0,0.0,0.0,  -0.5,-1.0,0.0,  0.0,0.0,0.0] );
+  var len = g_shapesList.length;
+  for(var i = 0; i < len; i++) {
+    g_shapesList[i].render();
 
-  var body = new Cube();
-  body.color = [1.0,0.0,0.0,1.0];
-  body.render();
-
-  var duration = performance.now() - startTime; 
+  var duration = performance.now() - startTime;
   sendTextToHTML("numdot: " +len+" ms: "+Math.floor(duration) + " fps: " + Math.floor(10000/duration), "numdot")
-
+  } 
 }
 
 function sendTextToHTML(text, htmlID){
@@ -237,4 +234,199 @@ function sendTextToHTML(text, htmlID){
     return;
   }
   htmlElm.innerHTML = text;
+}
+
+function drawPicture(){
+  g_shapesList = [];
+  g_shapesList.push(
+
+    // S shape
+    new pictureTriangle(
+      [.4,.2,  .4,.3,  0.1,0.3],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.1,0.2,  0.1,0.3,  0.4,0.2],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.2,  0.1,0.2,  0.1,0.0],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.2,  0.1,0.0,  0.2,0.0],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.0,  0.4,0.1,  0.2,0.1],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.2,0.0,  0.4,0.0,  0.4,0.1],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.4,0.0,  0.4,0.1],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.4,-0.2,  0.4,0.0],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.3,0.0,  0.3,-0.2,  0.4,-0.2],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.1,-0.1,  0.3,-0.1,  0.3,-0.2],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.1,-0.1,  0.1,-0.2,  0.3,-0.2],
+      [1,0,1,1]
+    ),
+
+    //back fin 
+    new pictureTriangle(
+      [0.45,0.3,  0.5,0.0,  0.7,0.15],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.45,-0.3,  0.5,0.0,  0.7,-0.15],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.5,0.0,  0.7,0.15],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,-0.1,  0.5,0.0,  0.7,-0.15],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.5,0.0,  0.75,-0.1],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.9,0.1,  0.9,-0.1],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.75,-0.1,  0.9,-0.1],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.75,0.1,  0.95,0.3,  0.9,0.1],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [0.75,-0.1,  0.95,-0.3,  0.9,-0.1],
+      [1,0,0,1]
+    ),
+
+    // M shape
+    new pictureTriangle(
+      [0.0,0.0,  0.0,0.3,  -0.2,0.0],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.4,0.3,  -0.4,0.0,  -0.2,0.0],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.1,0.0,  0.0,0.0,  0.0,-0.2],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.1,0.0,  -0.1,-0.2,  0.0,-0.2],
+      [1,0,1,1]
+    ),
+
+    new pictureTriangle(
+      [-0.2,-0.05,  -0.1,0.0,  -0.3,0.0],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [-0.4,0.0,  -0.3,0.0,  -0.3,-0.2],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.4,0.0,  -0.4,-0.2,  -0.3,-0.2],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [-0.1,0.3,  -0.2,0.1,  -0.3,0.29],
+      [1,0,1,1]
+    ),
+
+
+    //fish head
+    new pictureTriangle(
+      [-0.65,0.0,  -0.5,0.0,  -0.45,0.3],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.65,0.0,  -0.5,0.0,  -0.45,-0.25],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.65,0.0,  -0.8,0.05,  -0.45,0.3],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.65,0.0,  -0.8,0.05,  -0.75,-0.05],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.97,-0.1,  -0.8,0.05,  -0.75,-0.05],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [-0.65,0.0,  -0.65,-0.1,  -0.45,-0.25],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [-0.85,-0.2,  -0.65,-0.1,  -0.45,-0.25],
+      [1,0,0,1]
+    ),
+    new pictureTriangle(
+      [-0.68,0.08,  -0.55,0.115,  -0.6,0.15],
+      [0,0,0,1]
+    ),
+    //upper fin
+    new pictureTriangle(
+      [0.0,0.35,  -0.25,0.375,  0.0,0.4],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.05,0.5,  -0.25,0.375,  0.0,0.4],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.05,0.5,  0.05,0.6,  0.0,0.4],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.4,0.4,  0.05,0.6,  0.0,0.5],
+      [1,0,0,1]
+    ),
+    //Bottom find
+    new pictureTriangle(
+      [0.0,-0.25,  -0.25,-0.275,  0.0,-0.3],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.05,-0.4,  -0.25,-0.275,  0.0,-0.3],
+      [0,1,1,1]
+    ),
+    new pictureTriangle(
+      [-0.05,-0.4,  0.05,-0.5,  0.0,-0.3],
+      [1,0,1,1]
+    ),
+    new pictureTriangle(
+      [0.4,-0.3,  0.05,-0.5,  0.0,-0.35],
+      [1,0,0,1]
+    ),
+    )
+  renderAllShapes();
 }
