@@ -110,7 +110,7 @@ function main() {
   canvas.onmousemove = function(ev) { if (ev.buttons == 1){ click(ev) } };
 
   // Specify the color for clearing <canvas>
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(0.0, 0.2, 0.2, 1.0);
 
   renderAllShapes();
 }
@@ -166,22 +166,26 @@ function renderAllShapes(){
   var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
   
+  gl.enable(gl.DEPTH_TEST);
+
   // Clear <canvas>
-  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
-  body.matrix.translate(-0.25, -0.5, 0.0);
-  body.matrix.scale(0.5, 1.0, 0.5); //scale happens first
+  body.matrix.translate(-0.85, -0.5, 0.0);
+  body.matrix.rotate(-30, 0, 0); 
+  body.matrix.scale(1.0, 1.0, 1.0); 
+  // scale happens first
   body.render();
 
   //draw a left arm
-  var leftArm = new Cube();
-  leftArm.color = [1.0, 1.0, 0.0, 1.0];
-  leftArm.matrix.translate(0.7, 0.0, 0.0);
-  leftArm.matrix.rotate(45, 0, 0, 1);
-  leftArm.matrix.scale(0.25, 0.7, 0.5);
-  leftArm.render();
+  // var leftArm = new Cube();
+  // leftArm.color = [1.0, 1.0, 0.0, 1.0];
+  // leftArm.matrix.translate(0.7, 0.0, 0.0);
+  // leftArm.matrix.rotate(80, 0, 0, 1);
+  // leftArm.matrix.scale(0.25, 0.7, 0.5);
+  // leftArm.render();
 
 
   var duration = performance.now() - startTime;
