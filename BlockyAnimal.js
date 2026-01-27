@@ -2,8 +2,9 @@
 // Vertex shader program
 var VSHADER_SOURCE = `
   attribute vec4 a_Position;
+  uniform mat4 u_ModelMatrix;
   void main() {
-    gl_Position = a_Position;
+    gl_Position = u_ModelMatrix * a_Position;
   }
 `;
 
@@ -55,15 +56,14 @@ function connectVariablesToGLSL() {
     return;
   }
 
-  // u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
-  // if (!u_ModelMatrix) {
-  //   console.log('Failed to get the storage location of u_ModelMatrix');
-  //   return;
-  // }
+  u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
+  if (!u_ModelMatrix) {
+   console.log('Failed to get the storage location of u_ModelMatrix');
+   return;
+  }
 
-  
-  // var identityM = new Matrix4();
-  // gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
+  var identityM = new Matrix4();
+  gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
 }
 
 
@@ -188,7 +188,18 @@ function renderAllShapes(){
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
+  body.matrix.translate(-0.25, -0.5, 0.0);
+  body.matrix.scale(0.5, 1.0, 0.5); //scale happens first
   body.render();
+
+  //draw a left arm
+  var leftArm = new Cube();
+  leftArm.color = [1.0, 1.0, 0.0, 1.0];
+  leftArm.matrix.translate(0.7, 0.0, 0.0);
+  leftArm.matrix.rotate(45, 0, 0, 1);
+  leftArm.matrix.scale(0.25, 0.7, 0.5);
+  leftArm.render();
+
 
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: "+Math.floor(duration) + " fps: " + Math.floor(10000/duration), "numdot")
