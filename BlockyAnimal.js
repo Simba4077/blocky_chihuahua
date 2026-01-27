@@ -2,10 +2,8 @@
 // Vertex shader program
 var VSHADER_SOURCE = `
   attribute vec4 a_Position;
-  uniform float u_Size;
   void main() {
     gl_Position = a_Position;
-    gl_PointSize = u_Size;
   }
 `;
 
@@ -57,12 +55,18 @@ function connectVariablesToGLSL() {
     return;
   }
 
-  u_Size = gl.getUniformLocation(gl.program, 'u_Size');
-  if(!u_Size) {
-    console.log('Failed to get the storage location of u_Size');
-    return;
-  }
+  // u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
+  // if (!u_ModelMatrix) {
+  //   console.log('Failed to get the storage location of u_ModelMatrix');
+  //   return;
+  // }
+
+  
+  // var identityM = new Matrix4();
+  // gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
 }
+
+
 
 //Constants
 const POINT = 0;
@@ -126,12 +130,7 @@ function main() {
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  //add blending
-  gl.enable(gl.BLEND);
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-  // Clear <canvas>
-  gl.clear(gl.COLOR_BUFFER_BIT);
+  renderAllShapes();
 }
 
 
@@ -162,19 +161,6 @@ function click(ev) {
   point.segments=g_selectedSegments;
   g_shapesList.push(point);
   
-  // g_points.push([x, y]); // Store the coordinates to g_points array
-  // g_colors.push(g_selectedColor.slice()); // Store the color to g_colors array
-  // g_sizes.push(g_selectedSize); // Store the size to g_sizes array)
- 
-  // Store the coordinates to g_points array
-  // if (x >= 0.0 && y >= 0.0) {      // First quadrant
-  //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-  // } else if (x < 0.0 && y < 0.0) { // Third quadrant
-  //   g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-  // } else {                         // Others
-  //   g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-  // }
-  //Draw shapes in the canvas
   renderAllShapes();
 }
 
@@ -188,43 +174,25 @@ function convertCoordinatesEventToGL(ev) {
   return([x, y]);
 }
 
-function undoLastShape(){
-  if (g_shapesList.length==0){
-    return;
-  }
-  g_shapesList.pop();
-  renderAllShapes();
-}
 
-function replayDrawing(){
-  //clear the canvas
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  let i = 0;
-  var delay = 20;
-  var timer = setInterval(() => {
-    if(i>=g_shapesList.length){
-      clearInterval(timer);
-      return;
-    }
-    g_shapesList[i].render();
-    i++;
-  }, delay);
-}
 
 function renderAllShapes(){
 
   //check the time at the start of function 
   var startTime = performance.now();
+
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  var len = g_shapesList.length;
-  for(var i = 0; i < len; i++) {
-    g_shapesList[i].render();
+  drawTriangle3D([-1.0,0.0,0.0,  -0.5,-1.0,0.0,  0.0,0.0,0.0] ); 
+
+  var body = new Cube();
+  body.color = [1.0, 0.0, 0.0, 1.0];
+  body.render();
 
   var duration = performance.now() - startTime;
-  sendTextToHTML("numdot: " +len+" ms: "+Math.floor(duration) + " fps: " + Math.floor(10000/duration), "numdot")
-  } 
+  sendTextToHTML(" ms: "+Math.floor(duration) + " fps: " + Math.floor(10000/duration), "numdot")
+
 }
 
 function sendTextToHTML(text, htmlID){
@@ -234,199 +202,4 @@ function sendTextToHTML(text, htmlID){
     return;
   }
   htmlElm.innerHTML = text;
-}
-
-function drawPicture(){
-  g_shapesList = [];
-  g_shapesList.push(
-
-    // S shape
-    new pictureTriangle(
-      [.4,.2,  .4,.3,  0.1,0.3],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [0.1,0.2,  0.1,0.3,  0.4,0.2],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.2,0.2,  0.1,0.2,  0.1,0.0],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.2,0.2,  0.1,0.0,  0.2,0.0],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.2,0.0,  0.4,0.1,  0.2,0.1],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.2,0.0,  0.4,0.0,  0.4,0.1],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.3,0.0,  0.4,0.0,  0.4,0.1],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.3,0.0,  0.4,-0.2,  0.4,0.0],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.3,0.0,  0.3,-0.2,  0.4,-0.2],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.1,-0.1,  0.3,-0.1,  0.3,-0.2],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.1,-0.1,  0.1,-0.2,  0.3,-0.2],
-      [1,0,1,1]
-    ),
-
-    //back fin 
-    new pictureTriangle(
-      [0.45,0.3,  0.5,0.0,  0.7,0.15],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.45,-0.3,  0.5,0.0,  0.7,-0.15],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.75,0.1,  0.5,0.0,  0.7,0.15],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.75,-0.1,  0.5,0.0,  0.7,-0.15],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [0.75,0.1,  0.5,0.0,  0.75,-0.1],
-      [1,0,0,1]
-    ),
-    new pictureTriangle(
-      [0.75,0.1,  0.9,0.1,  0.9,-0.1],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [0.75,0.1,  0.75,-0.1,  0.9,-0.1],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [0.75,0.1,  0.95,0.3,  0.9,0.1],
-      [1,0,0,1]
-    ),
-    new pictureTriangle(
-      [0.75,-0.1,  0.95,-0.3,  0.9,-0.1],
-      [1,0,0,1]
-    ),
-
-    // M shape
-    new pictureTriangle(
-      [0.0,0.0,  0.0,0.3,  -0.2,0.0],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.4,0.3,  -0.4,0.0,  -0.2,0.0],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.1,0.0,  0.0,0.0,  0.0,-0.2],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.1,0.0,  -0.1,-0.2,  0.0,-0.2],
-      [1,0,1,1]
-    ),
-
-    new pictureTriangle(
-      [-0.2,-0.05,  -0.1,0.0,  -0.3,0.0],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [-0.4,0.0,  -0.3,0.0,  -0.3,-0.2],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.4,0.0,  -0.4,-0.2,  -0.3,-0.2],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [-0.1,0.3,  -0.2,0.1,  -0.3,0.29],
-      [1,0,1,1]
-    ),
-
-
-    //fish head
-    new pictureTriangle(
-      [-0.65,0.0,  -0.5,0.0,  -0.45,0.3],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.65,0.0,  -0.5,0.0,  -0.45,-0.25],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.65,0.0,  -0.8,0.05,  -0.45,0.3],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.65,0.0,  -0.8,0.05,  -0.75,-0.05],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.97,-0.1,  -0.8,0.05,  -0.75,-0.05],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [-0.65,0.0,  -0.65,-0.1,  -0.45,-0.25],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [-0.85,-0.2,  -0.65,-0.1,  -0.45,-0.25],
-      [1,0,0,1]
-    ),
-    new pictureTriangle(
-      [-0.68,0.08,  -0.55,0.115,  -0.6,0.15],
-      [0,0,0,1]
-    ),
-    //upper fin
-    new pictureTriangle(
-      [0.0,0.35,  -0.25,0.375,  0.0,0.4],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.05,0.5,  -0.25,0.375,  0.0,0.4],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.05,0.5,  0.05,0.6,  0.0,0.4],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [0.4,0.4,  0.05,0.6,  0.0,0.5],
-      [1,0,0,1]
-    ),
-    //Bottom find
-    new pictureTriangle(
-      [0.0,-0.25,  -0.25,-0.275,  0.0,-0.3],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.05,-0.4,  -0.25,-0.275,  0.0,-0.3],
-      [0,1,1,1]
-    ),
-    new pictureTriangle(
-      [-0.05,-0.4,  0.05,-0.5,  0.0,-0.3],
-      [1,0,1,1]
-    ),
-    new pictureTriangle(
-      [0.4,-0.3,  0.05,-0.5,  0.0,-0.35],
-      [1,0,0,1]
-    ),
-    )
-  renderAllShapes();
 }
