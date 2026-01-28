@@ -90,12 +90,14 @@ let g_selectedSize = 5;
 let g_selectedType = POINT;
 let g_globalAngle = 0;
 let g_yellowAngle = 0;
+let g_magentaAngle = 0;
+
 
 
 function addActionsForHtmlUI(){
   //angle slider events
   document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes();});
-  
+  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes();});
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes();});
 }
 
@@ -199,6 +201,7 @@ function renderAllShapes(){
   box.matrix = yellowCoordinatesMat;
   box.matrix.translate(0.0, 0.65, 0.0);
   box.matrix.rotate(45,0,0,1);
+  box.matrix.rotate(g_magentaAngle, 0, 0, 1);
   box.matrix.scale(0.3, 0.3, 0.3);
   box.matrix.translate(-0.5, 0.0, -0.001);
   // box.matrix.rotate(-30, 1, 0, 0);
