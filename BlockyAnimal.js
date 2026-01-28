@@ -91,11 +91,14 @@ let g_selectedType = POINT;
 let g_globalAngle = 0;
 let g_yellowAngle = 0;
 let g_magentaAngle = 0;
+let g_yellowAnimation = false;
 
 
 
 function addActionsForHtmlUI(){
-  //angle slider events
+  //button events
+  document.getElementById('animationYellowOnButton').onclick = function(){g_yellowAnimation=true;};
+  document.getElementById('animationYellowOffButton').onclick = function(){g_yellowAnimation=false;};
   document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes();});
   document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes();});
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes();});
@@ -118,9 +121,18 @@ function main() {
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.2, 0.2, 1.0);
 
-  renderAllShapes();
+  requestAnimationFrame(tick);
 }
 
+var g_startTime = performance.now()/1000.0;
+var g_seconds = performance.now()/1000.0 - g_startTime;
+
+function tick() {
+  g_seconds = performance.now()/1000.0 - g_startTime;
+  updateAnimationAngles();
+  renderAllShapes();
+  requestAnimationFrame(tick);
+}
 
 
 var g_shapesList = [];
@@ -162,6 +174,11 @@ function convertCoordinatesEventToGL(ev) {
   return([x, y]);
 }
 
+function updateAnimationAngles(){
+  if(g_yellowAnimation){
+    g_yellowAngle = 45*Math.sin(g_seconds);
+  }
+}
 
 
 function renderAllShapes(){
@@ -190,6 +207,14 @@ function renderAllShapes(){
   leftArm.matrix.setTranslate(0, -0.5, 0.0);
   leftArm.matrix.rotate(-5, 1, 0, 1);
   leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
+
+
+  // if(g_yellowAnimation){
+  //   leftArm.matrix.rotate(45*Math.sin(g_seconds), 0, 0, 1);
+  // }else{
+  //   leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
+  // }
+
   var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
   leftArm.matrix.scale(0.25, 0.7, 0.5);
   leftArm.matrix.translate(-0.5, 0.0, 0.0);
