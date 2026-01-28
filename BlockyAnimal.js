@@ -38,6 +38,9 @@ function setupWebGL() {
     return;
   }
   gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
 
 }
 
@@ -89,19 +92,17 @@ let g_selectedColor=[1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 5;
 let g_selectedType = POINT;
 let g_globalAngle = 0;
-let g_yellowAngle = 0;
-let g_magentaAngle = 0;
-let g_yellowAnimation = false;
+let g_headAngle = 0;
+let g_headAnimation = false;
 
 
 
 function addActionsForHtmlUI(){
   //button events
-  document.getElementById('animationYellowOnButton').onclick = function(){g_yellowAnimation=true;};
-  document.getElementById('animationYellowOffButton').onclick = function(){g_yellowAnimation=false;};
+  document.getElementById('animationHeadOnButton').onclick = function(){g_headAnimation=true;};
+  document.getElementById('animationHeadOffButton').onclick = function(){g_headAnimation=false;};
   document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes();});
-  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes();});
-  document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes();});
+  document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes();});
 }
 
 function main() {
@@ -175,8 +176,8 @@ function convertCoordinatesEventToGL(ev) {
 }
 
 function updateAnimationAngles(){
-  if(g_yellowAnimation){
-    g_yellowAngle = 45*Math.sin(g_seconds);
+  if(g_headAnimation){
+    g_headAngle = 45*Math.sin(g_seconds);
   }
 }
 
@@ -193,45 +194,86 @@ function renderAllShapes(){
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-
+  //draw a body cube
   var body = new Cube();
-  body.color = [1.0, 0.0, 0.0, 1.0];
-  body.matrix.translate(-0.25, -0.75, 0.0);
-  body.matrix.rotate(-5, 1, 0, 0); 
-  body.matrix.scale(0.5, 0.3, 0.5); 
+  body.color = [0.8235, 0.7059, 0.5490, 1.0];
+  body.matrix.translate(-0.3, -0.1, 0.0);
+  var bodyFrame = new Matrix4(body.matrix);
+  body.matrix.scale(0.6, 0.2, 0.3); 
   body.render();
 
-  //draw a left arm
-  var leftArm = new Cube();
-  leftArm.color = [1.0, 1.0, 0.0, 1.0];
-  leftArm.matrix.setTranslate(0, -0.5, 0.0);
-  leftArm.matrix.rotate(-5, 1, 0, 1);
-  leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
+  //draw a head cube | parent: body
+  var head = new Cube();
+  head.color = [0.8235, 0.7059, 0.5490, 1.0];
+  head.matrix = new Matrix4(bodyFrame);
+  head.matrix.rotate(-g_headAngle, 0, 1, 0);
+  head.matrix.translate(0.6, 0.1, 0.025);
+  head.matrix.scale(.22,0.25,0.25);
+  head.render();
+
+  //back right leg | parent: body
+  var backRightLeg = new Cube();
+  backRightLeg.color = [0.8235, 0.7059, 0.5490, 1.0];
+  backRightLeg.matrix = new Matrix4(bodyFrame);
+  backRightLeg.matrix.translate(0.05, -0.15, 0.0);
+  backRightLeg.matrix.scale(.05, 0.15, 0.05);
+  backRightLeg.render();
+
+  //back left leg | parent: body
+  var backLeftLeg = new Cube();
+  backLeftLeg.color = [0.8235, 0.7059, 0.5490, 1.0];
+  backLeftLeg.matrix = new Matrix4(bodyFrame);
+  backLeftLeg.matrix.translate(0.05, -0.15, 0.25);
+  backLeftLeg.matrix.scale(.05, 0.15, 0.05);
+  backLeftLeg.render();
+
+  //front left leg | parent: body
+  var frontLeftLeg = new Cube();
+  frontLeftLeg.color = [0.8235, 0.7059, 0.5490, 1.0];
+  frontLeftLeg.matrix = new Matrix4(bodyFrame);
+  frontLeftLeg.matrix.translate(0.5, -0.15, 0.25);
+  frontLeftLeg.matrix.scale(.05, 0.15, 0.05);
+  frontLeftLeg.render();
+
+  //front right leg | parent: body
+  var frontRightLeg = new Cube();
+  frontRightLeg.color = [0.8235, 0.7059, 0.5490, 1.0];
+  frontRightLeg.matrix = new Matrix4(bodyFrame);
+  frontRightLeg.matrix.translate(0.5, -0.15, 0);
+  frontRightLeg.matrix.scale(.05, 0.15, 0.05);
+  frontRightLeg.render();
 
 
-  // if(g_yellowAnimation){
-  //   leftArm.matrix.rotate(45*Math.sin(g_seconds), 0, 0, 1);
-  // }else{
-  //   leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);
-  // }
 
-  var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
-  leftArm.matrix.scale(0.25, 0.7, 0.5);
-  leftArm.matrix.translate(-0.5, 0.0, 0.0);
-  leftArm.render();
 
-  //test box
-  var box = new Cube();
-  box.color = [1.0, 0.0, 1.0, 1.0];
-  box.matrix = yellowCoordinatesMat;
-  box.matrix.translate(0.0, 0.65, 0.0);
-  box.matrix.rotate(45,0,0,1);
-  box.matrix.rotate(g_magentaAngle, 0, 0, 1);
-  box.matrix.scale(0.3, 0.3, 0.3);
-  box.matrix.translate(-0.5, 0.0, -0.001);
-  // box.matrix.rotate(-30, 1, 0, 0);
-  // box.matrix.scale(0.2, 0.4, 0.2);
-  box.render();
+  //my reference cube with low alpha, og coordinates
+  var ref = new Cube();
+  ref.color = [1, 1.0, 1.0, 0.02];
+  ref.render();
+
+
+
+  // //draw a left arm
+  // var yellow = new Cube();
+  // yellow.color = [1.0, 1.0, 0.0, 1.0];
+  // yellow.matrix.setTranslate(0, -0.5, 0.0);
+  // yellow.matrix.rotate(-5, 1, 0, 1);
+  // yellow.matrix.rotate(-g_yellowAngle, 0, 0, 1);
+
+  // var yellowCoordinatesMat = new Matrix4(yellow.matrix);
+  // yellow.matrix.scale(0.65, 0.7, 0.5);
+  // yellow.matrix.translate(-0.5, 0.0, 0.0);
+  // yellow.render();
+
+  // var magenta = new Cube();
+  // magenta.color = [1.0, 0.0, 1.0, 1.0];
+  // magenta.matrix = yellowCoordinatesMat;
+  // magenta.matrix.translate(0.0, 0.65, 0.0);
+  // magenta.matrix.rotate(45,0,0,1);
+  // magenta.matrix.rotate(g_magentaAngle, 0, 0, 1);
+  // magenta.matrix.scale(0.3, 0.3, 0.3);
+  // magenta.matrix.translate(-0.5, 0.0, -0.001);
+  // magenta.render();
 
 
   var duration = performance.now() - startTime;

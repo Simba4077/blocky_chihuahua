@@ -2,7 +2,7 @@ class Cube{
   constructor(){
     this.type='cube';
     this.color=[1.0,1.0,1.0,1.0];
-    this.matrix = new Matrix4(); //uncomment when using 
+    this.matrix = new Matrix4(); 
   }
 
   render(){
@@ -18,22 +18,22 @@ class Cube{
     drawTriangle3D( [0.0,0.0,0.0,  1.0,1.0,0.0,  1.0,0.0,0.0] );
     drawTriangle3D( [0.0,0.0,0.0,  0.0,1.0,0.0,  1.0,1.0,0.0] );
 
-    gl.uniform4f(u_FragColor, rgba[0]*0.9, rgba[1]*0.9, rgba[2]*0.9, rgba[3]);
+    gl.uniform4f(u_FragColor, rgba[0]*1.3, rgba[1]*1.3, rgba[2]*1.3, rgba[3]);
     // top of cube
     drawTriangle3D( [0.0,1.0,0.0,  0.0,1.0,1.0,  1.0,1.0,1.0] );
     drawTriangle3D( [0.0,1.0,0.0,  1.0,1.0,1.0,  1.0,1.0,0.0] );
 
-    gl.uniform4f(u_FragColor, rgba[0]*0.2, rgba[1]*0.2, rgba[2]*0.2, rgba[3]);
+    gl.uniform4f(u_FragColor, rgba[0]*0.8, rgba[1]*0.8, rgba[2]*0.8, rgba[3]);
     //right face of cube
     drawTriangle3D( [1.0,0.0,0.0,  1.0,1.0,1.0,  1.0,0.0,1.0] );
     drawTriangle3D( [1.0,0.0,0.0,  1.0,1.0,0.0,  1.0,1.0,1.0] );
     
-    gl.uniform4f(u_FragColor, rgba[0]*0.5, rgba[1]*0.5, rgba[2]*0.5, rgba[3]);
+    gl.uniform4f(u_FragColor, rgba[0]*0.4, rgba[1]*0.4, rgba[2]*0.4, rgba[3]);
     //botom face of cube
     drawTriangle3D( [1.0,0.0,0.0,  0.0,0.0,1.0,  1.0,0.0,1.0] );
     drawTriangle3D( [1.0,0.0,0.0,  0.0,0.0,0.0,  0.0,0.0,1.0] );
 
-    gl.uniform4f(u_FragColor, rgba[0]*1., rgba[1]*1., rgba[2]*1., rgba[3]);
+    gl.uniform4f(u_FragColor, rgba[0]*.3, rgba[1]*.3, rgba[2]*.3, rgba[3]);
     //back face of cube
     drawTriangle3D( [0.0,0.0,1.0,  1.0,1.0,1.0,  0.0,1.0,1.0] );
     drawTriangle3D( [0.0,0.0,1.0,  1.0,0.0,1.0,  1.0,1.0,1.0] );
