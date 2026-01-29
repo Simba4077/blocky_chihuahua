@@ -239,6 +239,59 @@ function renderAllShapes(){
   backBody.matrix.scale(0.15, 0.15, 0.25);
   backBody.render();
 
+  //back body cube right side | parent: back body
+  var backBodyRight = new Cube();
+  backBodyRight.color = [1, 1, 0, 1.0];
+  backBodyRight.matrix = new Matrix4(backBodyFrame);
+  backBodyRight.matrix.translate(0.015, 0.015, -0.02);
+  var backBodyRightMat = new Matrix4(backBodyRight.matrix);
+  backBodyRight.matrix.scale(0.125, 0.125, 0.03);
+  backBodyRight.render();
+
+  //back body cube right side 2 | parent: back body right side
+  var backBodyRight2 = new Cube();
+  backBodyRight2.color = [0, 0, 1, 1.0];
+  backBodyRight2.matrix = new Matrix4(backBodyRightMat);
+  backBodyRight2.matrix.translate(0.025, 0.015, -0.01);
+  var backBodyRight2Mat = new Matrix4(backBodyRight2.matrix);
+  backBodyRight2.matrix.scale(0.11, 0.1, 0.02);
+  backBodyRight2.render();
+
+  //back body cube right side 3 | parent: back body right side
+  var backBodyRight3 = new Cube();
+  backBodyRight3.color = [1, 0, 1, 1.0];
+  backBodyRight3.matrix = new Matrix4(backBodyRight2Mat);
+  backBodyRight3.matrix.translate(0.01, 0.01, -0.005);
+  backBodyRight3.matrix.scale(0.1, 0.08, 0.01);
+  backBodyRight3.render();
+
+  //back body cube left side | parent: back body
+  var backBodyLeft = new Cube();
+  backBodyLeft.color = [1, 1, 0, 1.0];
+  backBodyLeft.matrix = new Matrix4(backBodyFrame);
+  backBodyLeft.matrix.translate(0.015, 0.015, 0.25);
+  var backBodyLeftMat = new Matrix4(backBodyLeft.matrix);
+  backBodyLeft.matrix.scale(0.125, 0.125, 0.03);
+  backBodyLeft.render();
+
+  //back body cube left side 2 | parent: back body right side
+  var backBodyLeft2 = new Cube();
+  backBodyLeft2.color = [0, 0, 1, 1.0];
+  backBodyLeft2.matrix = new Matrix4(backBodyLeftMat);
+  backBodyLeft2.matrix.translate(0.025, 0.015, 0.015);
+  var backBodyLeft2Mat = new Matrix4(backBodyLeft2.matrix);
+  backBodyLeft2.matrix.scale(0.11, 0.1, 0.02);
+  backBodyLeft2.render();
+
+  //back body cube left side 3 | parent: back body right side
+  var backBodyLeft3 = new Cube();
+  backBodyLeft3.color = [1, 0, 1, 1.0];
+  backBodyLeft3.matrix = new Matrix4(backBodyLeft2Mat);
+  backBodyLeft3.matrix.translate(0.01, 0.01, 0.025);
+  backBodyLeft3.matrix.scale(0.1, 0.08, 0.01);
+  backBodyLeft3.render();
+
+
   //back body cube underbelly | parent: back body
   var backBodyUnderbelly = new Cube();
   backBodyUnderbelly.color = [1, 0, 1, 1.0];
@@ -253,8 +306,17 @@ function renderAllShapes(){
   backBodyTop.color = [0,1,1,1.0];
   backBodyTop.matrix = new Matrix4(backBodyFrame);
   backBodyTop.matrix.translate(0.025, 0.15, 0.0);
+  var backBodyTopFrame = new Matrix4(backBodyTop.matrix);
   backBodyTop.matrix.scale(0.15, 0.015, 0.25);
   backBodyTop.render();
+
+  //back body cube top 2 | parent: back body top
+  var backBodyTop2 = new Cube();
+  backBodyTop2.color = [1,0.5,0.3490,1.0];
+  backBodyTop2.matrix = new Matrix4(backBodyTopFrame);
+  backBodyTop2.matrix.translate(0.025, 0.015, 0.02);
+  backBodyTop2.matrix.scale(0.1, 0.015, 0.2);
+  backBodyTop2.render();
 
   //base of tail1 | parent: back body
   var tailBase1 = new Cube();
@@ -265,6 +327,7 @@ function renderAllShapes(){
   tailBase1.matrix.scale(0.05, 0.05, 0.075);
   tailBase1.render();
 
+  //tail segments | parent: tail base n - 1
   var tailBase2 = new Cube();
   tailBase2.color = [1, 0.5, 0.3490, 1.0];
   tailBase2.matrix = new Matrix4(tailBase1FrameMat);
@@ -297,6 +360,7 @@ function renderAllShapes(){
   tail1Base5.matrix.scale(0.02, 0.08, 0.02);
   tail1Base5.render();
 
+  //tail tip | parent: tail1 base5
   var tailTip = new Cube();
   tailTip.color = [1,1,0,1.0];
   tailTip.matrix = new Matrix4(tail1Base5FrameMat);
