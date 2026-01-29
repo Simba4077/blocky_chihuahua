@@ -222,6 +222,17 @@ function renderAllShapes(){
   middleBody.matrix.scale(0.2, 0.2, 0.3);
   middleBody.render();
 
+  //middle body top cube | parent: middle body
+  var middleBodyTop = new Cube();
+  middleBodyTop.color = [1,1,0,1.0];
+  middleBodyTop.matrix = new Matrix4(middleBodyFrame);
+  middleBodyTop.matrix.translate(0.025, 0.2, 0.05);
+  var middleBodyTopFrame = new Matrix4(middleBodyTop.matrix);
+  middleBodyTop.matrix.scale(0.15, 0.015, 0.2);
+  middleBodyTop.render();
+
+
+
   //middle body cube underbelly | parent: middle body
   var middleBodyUnderbelly = new Cube();
   middleBodyUnderbelly.color = [0.8235, 0.7059, 0.5490, 1.0];
@@ -270,9 +281,44 @@ function renderAllShapes(){
   var middleBodyRight4 = new Cube();
   middleBodyRight4.color = [1,0,1,1.0];
   middleBodyRight4.matrix = new Matrix4(middleBodyRight3Mat);
-  middleBodyRight4.matrix.translate(0.05, 0.008, -0.02);
+  middleBodyRight4.matrix.translate(0.025, 0.008, -0.02);
   middleBodyRight4.matrix.scale(0.13, 0.08, 0.01);
   middleBodyRight4.render();
+
+  //middle body left side piece | parent: middle body
+  var middleBodyLeft = new Cube();
+  middleBodyLeft.color = [1, 1, 0, 1.0];
+  middleBodyLeft.matrix = new Matrix4(middleBodyFrame);
+  middleBodyLeft.matrix.translate(0.0, 0.015, 0.3);
+  var middleBodyLeftMat = new Matrix4(middleBodyLeft.matrix);
+  middleBodyLeft.matrix.scale(0.2, 0.175, 0.01);
+  middleBodyLeft.render();
+
+  //middle body left side piece 2 | parent: middle body left side
+  var middleBodyLeft2 = new Cube();
+  middleBodyLeft2.color = [0, 0, 1, 1.0];
+  middleBodyLeft2.matrix = new Matrix4(middleBodyLeftMat);
+  middleBodyLeft2.matrix.translate(0.0, 0.015, 0.01);
+  var middleBodyLeft2Mat = new Matrix4(middleBodyLeft2.matrix);
+  middleBodyLeft2.matrix.scale(0.2, 0.15, 0.01);
+  middleBodyLeft2.render();
+
+  //middle body left side piece 3 | parent: middle body left side 2
+  var middleBodyLeft3 = new Cube();
+  middleBodyLeft3.color = [1, 1, 0, 1.0];
+  middleBodyLeft3.matrix = new Matrix4(middleBodyLeft2Mat);
+  middleBodyLeft3.matrix.translate(0.0, 0.01, 0.015);
+  var middleBodyLeft3Mat = new Matrix4(middleBodyLeft3.matrix);
+  middleBodyLeft3.matrix.scale(0.2, 0.1, 0.01);
+  middleBodyLeft3.render();
+
+  //middle body left side piece 4 | parent: middle body left side 3
+  var middleBodyLeft4 = new Cube();
+  middleBodyLeft4.color = [1,0,1,1.0];
+  middleBodyLeft4.matrix = new Matrix4(middleBodyLeft3Mat);
+  middleBodyLeft4.matrix.translate(0.025, 0.008, 0.02);
+  middleBodyLeft4.matrix.scale(0.13, 0.08, 0.01);
+  middleBodyLeft4.render();
 
 
   //draw a back body cube (brown) | parent: middle body
