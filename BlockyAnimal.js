@@ -250,7 +250,7 @@ function renderAllShapes(){
 
   //---------------------------------------
 
-  //draw a head cube | parent: body
+  //draw a head cube | parent: front body
   var head = new Cube();
   head.color = [0.8235, 0.7059, 0.5490, 1.0];
   head.matrix = new Matrix4(frontBodyFrame);
@@ -261,13 +261,13 @@ function renderAllShapes(){
 
   //---------------------------------------
 
-  //back right leg (red)| parent: body
+  //back right leg (red)| parent: back body cube underbelly
   var backRightLeg1 = new Cube();
   backRightLeg1.color = [1,0, 0, 1.0];
   backRightLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
-  backRightLeg1.matrix.translate(0.0, -0.07, 0.0);
+  backRightLeg1.matrix.translate(0.0, -0.05, 0.0);
   var backRightKnee = new Matrix4(backRightLeg1.matrix);
-  backRightLeg1.matrix.scale(.05, 0.07, 0.05);
+  backRightLeg1.matrix.scale(.05, 0.05, 0.05);
   backRightLeg1.render();
 
   //brown piece (lower leg) | parent: back right leg 1
@@ -275,18 +275,27 @@ function renderAllShapes(){
   backRightLeg2.color = [0.8235, 0.7059, 0.5490, 1.0];
   backRightLeg2.matrix = new Matrix4(backRightKnee);
   backRightLeg2.matrix.translate(0, -0.07, 0.0);
+  var backRightLegMat = new Matrix4(backRightLeg2.matrix);
   backRightLeg2.matrix.scale(.05, 0.07, 0.05);
   backRightLeg2.render();
 
+  //paw piece (yellow) | parent: back right leg 2
+  var backRightPaw = new Cube();
+  backRightPaw.color = [1, 0.8431, 0.0, 1.0];
+  backRightPaw.matrix = new Matrix4(backRightLegMat);
+  backRightPaw.matrix.translate(0.0, -0.02, 0);
+  backRightPaw.matrix.scale(.07, 0.025, 0.05);
+  backRightPaw.render();
+
   //---------------------------------------
 
-  //back left leg (red)| parent: body
+  //back left leg (red)| parent: back body cube underbelly
   var backLeftLeg1 = new Cube();
   backLeftLeg1.color = [1, 0.0, 0.0, 1.0];
   backLeftLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
-  backLeftLeg1.matrix.translate(0.0, -0.07, 0.2);
+  backLeftLeg1.matrix.translate(0.0, -0.05, 0.2);
   var backLeftKnee = new Matrix4(backLeftLeg1.matrix);
-  backLeftLeg1.matrix.scale(.05, 0.07, 0.05);
+  backLeftLeg1.matrix.scale(.05, 0.05, 0.05);
   backLeftLeg1.render();
 
 
@@ -295,16 +304,26 @@ function renderAllShapes(){
   backLeftLeg2.color = [0.8235, 0.7059, 0.5490, 1.0];
   backLeftLeg2.matrix = new Matrix4(backLeftKnee);
   backLeftLeg2.matrix.translate(0.0, -0.07, 0.0);
+  var backLeftLegMat = new Matrix4(backLeftLeg2.matrix);
   backLeftLeg2.matrix.scale(.05, 0.07, 0.05);
   backLeftLeg2.render();
 
+
+  //paw piece (yellow) | parent: back left leg 2
+  var backLeftPaw = new Cube();
+  backLeftPaw.color = [1, 0.8431, 0.0, 1.0];
+  backLeftPaw.matrix = new Matrix4(backLeftLegMat);
+  backLeftPaw.matrix.translate(0.0, -0.02, 0);
+  backLeftPaw.matrix.scale(.07, 0.025, 0.05);
+  backLeftPaw.render();
+
   //---------------------------------------
 
-  //front left leg (red) | parent: body
+  //front left leg (red) | parent: front body frame
   var frontLeftLeg1 = new Cube();
   frontLeftLeg1.color = [1, 0.0, 0.0, 1.0];
   frontLeftLeg1.matrix = new Matrix4(frontBodyFrame);
-  frontLeftLeg1.matrix.translate(0.5, -0.07, 0.25);
+  frontLeftLeg1.matrix.translate(0.1, -0.075, 0.2);
   var frontLeftKnee = new Matrix4(frontLeftLeg1.matrix);
   frontLeftLeg1.matrix.scale(.05, 0.07, 0.05);
   frontLeftLeg1.render();
@@ -314,17 +333,26 @@ function renderAllShapes(){
   frontLeftLeg2.color = [0.8235, 0.7059, 0.5490, 1.0];
   frontLeftLeg2.matrix = new Matrix4(frontLeftKnee);
   frontLeftLeg2.matrix.translate(0, -0.07, 0.0);
+  var frontLeftLegMat = new Matrix4(frontLeftLeg2.matrix);
   frontLeftLeg2.matrix.scale(.05, 0.07, 0.05);
   frontLeftLeg2.render();
+
+  //paw piece (yellow) | parent: front left leg 2
+  var frontLeftPaw = new Cube();
+  frontLeftPaw.color = [1, 0.8431, 0.0, 1.0];
+  frontLeftPaw.matrix = new Matrix4(frontLeftLegMat);
+  frontLeftPaw.matrix.translate(0.0, -0.02, 0);
+  frontLeftPaw.matrix.scale(.07, 0.025, 0.05);
+  frontLeftPaw.render();
 
   //---------------------------------------
 
 
-  //front right leg | parent: body
+  //front right leg | parent: front body frame
   var frontRightLeg = new Cube();
   frontRightLeg.color = [1, 0.0, 0.0, 1.0];
   frontRightLeg.matrix = new Matrix4(frontBodyFrame);
-  frontRightLeg.matrix.translate(0.5, -0.07, 0);
+  frontRightLeg.matrix.translate(0.1, -0.073, 0.025);
   var frontRightKnee = new Matrix4(frontRightLeg.matrix);
   frontRightLeg.matrix.scale(.05, 0.07, 0.05);
   frontRightLeg.render();
@@ -334,8 +362,17 @@ function renderAllShapes(){
   frontRightLeg2.color = [0.8235, 0.7059, 0.5490, 1.0];
   frontRightLeg2.matrix = new Matrix4(frontRightKnee);
   frontRightLeg2.matrix.translate(0, -0.07, 0.0);
+  var frontRightLegMat = new Matrix4(frontRightLeg2.matrix);
   frontRightLeg2.matrix.scale(.05, 0.07, 0.05);
   frontRightLeg2.render();
+
+  //paw piece (yellow) | parent: front right leg 2
+  var frontRightPaw = new Cube();
+  frontRightPaw.color = [1, 0.8431, 0.0, 1.0];
+  frontRightPaw.matrix = new Matrix4(frontRightLegMat);
+  frontRightPaw.matrix.translate(0.0, -0.02, 0);
+  frontRightPaw.matrix.scale(.07, 0.025, 0.05);
+  frontRightPaw.render();
 
   //---------------------------------------
 
