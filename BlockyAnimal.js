@@ -248,6 +248,32 @@ function renderAllShapes(){
   frontBodyRight3.matrix.scale(0.07, 0.09, 0.01);
   frontBodyRight3.render();
 
+  //front body cube left side piece | parent: front body
+  var frontBodyLeft = new Cube();
+  frontBodyLeft.color = [1, 1, 0, 1.0];
+  frontBodyLeft.matrix = new Matrix4(frontBodyFrame);
+  frontBodyLeft.matrix.translate(0.0, 0.015, 0.3);
+  var frontBodyLeftMat = new Matrix4(frontBodyLeft.matrix);
+  frontBodyLeft.matrix.scale(0.15, 0.15, 0.01);
+  frontBodyLeft.render();
+
+  //front body cube left side piece 2 | parent: front body left side
+  var frontBodyLeft2 = new Cube();
+  frontBodyLeft2.color = [1, 0, 1, 1.0];
+  frontBodyLeft2.matrix = new Matrix4(frontBodyLeftMat);
+  frontBodyLeft2.matrix.translate(0.0, 0.015, 0.01);
+  var frontBodyLeft2Mat = new Matrix4(frontBodyLeft2.matrix);
+  frontBodyLeft2.matrix.scale(0.10, 0.12, 0.01);
+  frontBodyLeft2.render();
+
+  //front body cube left side piece 3 | parent: front body left side 2
+  var frontBodyLeft3 = new Cube();
+  frontBodyLeft3.color = [0, 0, 1, 1.0];
+  frontBodyLeft3.matrix = new Matrix4(frontBodyLeft2Mat);
+  frontBodyLeft3.matrix.translate(0.0, 0.01, 0.015);
+  var frontBodyLeft3Mat = new Matrix4(frontBodyLeft3.matrix);
+  frontBodyLeft3.matrix.scale(0.07, 0.09, 0.01);
+  frontBodyLeft3.render();
 
 
 
