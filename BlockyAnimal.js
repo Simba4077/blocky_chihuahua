@@ -530,10 +530,21 @@ function renderAllShapes(){
   var head = new Cube();
   head.color = [0.8235, 0.7059, 0.5490, 1.0];
   head.matrix = new Matrix4(frontBodyFrame);
-  head.matrix.translate(0.13, 0.1, 0.025);
+  head.matrix.translate(0.13, 0.1, 0.05);
+  var headFrame = new Matrix4(head.matrix);
   head.matrix.rotate(-g_headAngle, 0, 1, 0);
-  head.matrix.scale(.22,0.25,0.25);
+  head.matrix.scale(.18,0.18,0.18);
   head.render();
+
+  //draw top of head | parent: head
+  var headTop = new Cube();
+  headTop.color = [1,1,0,1.0];
+  headTop.matrix = new Matrix4(headFrame);
+  headTop.matrix.translate(0.0, 0.18, 0.0);
+  var headTopFrame = new Matrix4(headTop.matrix);
+  headTop.matrix.scale(0.15, 0.02, 0.15);
+  headTop.render();
+
 
   //---------------------------------------
 
