@@ -536,15 +536,95 @@ function renderAllShapes(){
   head.matrix.scale(.18,0.18,0.18);
   head.render();
 
+  //draw head right piece | parent: head
+  var headRight = new Cube();
+  headRight.color = [1, 1, 0, 1.0];
+  headRight.matrix = new Matrix4(headFrame);
+  headRight.matrix.translate(0.015, 0.015, -0.012);
+  var headRightMat = new Matrix4(headRight.matrix);
+  headRight.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headRight.matrix.scale(0.15, 0.15, 0.02);
+  headRight.render();
+
+  //draw head right piece 2 | parent: head right
+  var headRight2 = new Cube();
+  headRight2.color = [1, 0, 1, 1.0];
+  headRight2.matrix = new Matrix4(headRightMat);
+  headRight2.matrix.translate(0.025, 0.015, -0.01);
+  var headRight2Mat = new Matrix4(headRight2.matrix);
+  headRight2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headRight2.matrix.scale(0.1, 0.12, 0.01);
+  headRight2.render();
+
+  //draw head right piece 3 | parent: head right 2
+  var headRight3 = new Cube();
+  headRight3.color = [0, 0, 1, 1.0];
+  headRight3.matrix = new Matrix4(headRight2Mat);
+  headRight3.matrix.translate(0.015, 0.01, -0.005);
+  headRight3.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headRight3.matrix.scale(0.07, 0.09, 0.01);
+  headRight3.render();
+
+  //draw head left piece | parent: head
+  var headLeft = new Cube();
+  headLeft.color = [1, 1, 0, 1.0];
+  headLeft.matrix = new Matrix4(headFrame);
+  headLeft.matrix.translate(0.015, 0.015, 0.18);
+  var headLeftMat = new Matrix4(headLeft.matrix);
+  headLeft.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headLeft.matrix.scale(0.15, 0.15, 0.02);
+  headLeft.render();
+
+  //draw head left piece 2 | parent: head left
+  var headLeft2 = new Cube();
+  headLeft2.color = [1, 0, 1, 1.0];
+  headLeft2.matrix = new Matrix4(headLeftMat);
+  headLeft2.matrix.translate(0.025, 0.015, 0.02);
+  var headLeft2Mat = new Matrix4(headLeft2.matrix);
+  headLeft2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headLeft2.matrix.scale(0.1, 0.12, 0.01);
+  headLeft2.render();
+
+  //draw head left piece 3 | parent: head left 2
+  var headLeft3 = new Cube();
+  headLeft3.color = [0, 0, 1, 1.0];
+  headLeft3.matrix = new Matrix4(headLeft2Mat);
+  headLeft3.matrix.translate(0.015, 0.01, 0.01);
+  headLeft3.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headLeft3.matrix.scale(0.07, 0.09, 0.01);
+  headLeft3.render();
+
+
+
+
   //draw top of head | parent: head
   var headTop = new Cube();
   headTop.color = [1,1,0,1.0];
   headTop.matrix = new Matrix4(headFrame);
-  headTop.matrix.translate(0.0, 0.18, 0.0);
+  headTop.matrix.translate(0.015, 0.18, 0.015);
   var headTopFrame = new Matrix4(headTop.matrix);
-  headTop.matrix.scale(0.15, 0.02, 0.15);
+  headTop.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTop.matrix.scale(0.15, 0.01, 0.15);
   headTop.render();
 
+  //draw top of head 2 | parent: head top
+  var headTop2 = new Cube();
+  headTop2.color = [1,0,1,1.0];
+  headTop2.matrix = new Matrix4(headTopFrame);
+  headTop2.matrix.translate(0.025, 0.015, 0.025);
+  var headTop2Frame = new Matrix4(headTop2.matrix);
+  headTop2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTop2.matrix.scale(0.1, 0.01, 0.1);
+  headTop2.render();
+
+  //draw top of head 3 | parent: head top 2
+  var headTop3 = new Cube();
+  headTop3.color = [0,0,1,1.0];
+  headTop3.matrix = new Matrix4(headTop2Frame);
+  headTop3.matrix.translate(0.015, 0.01, 0.015);
+  headTop3.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTop3.matrix.scale(0.07, 0.01, 0.07);
+  headTop3.render();
 
   //---------------------------------------
 
