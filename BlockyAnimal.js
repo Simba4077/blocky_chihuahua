@@ -205,6 +205,14 @@ function renderAllShapes(){
   frontBody.matrix.scale(0.18, 0.18, 0.28); 
   frontBody.render();
 
+  //front body top cube | parent: front body
+  var frontBodyTop = new Cube();
+  frontBodyTop.color = [1,1,0,1.0];
+  frontBodyTop.matrix = new Matrix4(frontBodyFrame);
+  frontBodyTop.matrix.translate(0.001, 0.18, 0.065);
+  frontBodyTop.matrix.scale(0.1, 0.008, 0.15);
+  frontBodyTop.render();
+
   //front body cube underbelly | parent: front body
   var frontBodyUnderbelly = new Cube();
   frontBodyUnderbelly.color = [0.8235, 0.7059, 0.5490, 1.0];
@@ -212,6 +220,16 @@ function renderAllShapes(){
   frontBodyUnderbelly.matrix.translate(0.0, -0.025, 0.05);
   frontBodyUnderbelly.matrix.scale(0.1, 0.025, 0.2);
   frontBodyUnderbelly.render();
+
+  //front body cube right side piece | parent: front body
+  var frontBodyRight = new Cube();
+  frontBodyRight.color = [1, 1, 0, 1.0];
+  frontBodyRight.matrix = new Matrix4(frontBodyFrame);
+  frontBodyRight.matrix.translate(0.0, 0.015, -0.01);
+  var frontBodyRightMat = new Matrix4(frontBodyRight.matrix);
+  frontBodyRight.matrix.scale(0.15, 0.15, 0.01);
+  frontBodyRight.render();
+
 
   //draw a middle body cube (red) | parent: front body
   var middleBody = new Cube();
