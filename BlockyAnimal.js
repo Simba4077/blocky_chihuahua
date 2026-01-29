@@ -230,6 +230,26 @@ function renderAllShapes(){
   frontBodyRight.matrix.scale(0.15, 0.15, 0.01);
   frontBodyRight.render();
 
+  //front body cube right side piece 2 | parent: front body right side
+  var frontBodyRight2 = new Cube();
+  frontBodyRight2.color = [1, 0, 1, 1.0];
+  frontBodyRight2.matrix = new Matrix4(frontBodyRightMat);
+  frontBodyRight2.matrix.translate(0.0, 0.015, -0.01);
+  var frontBodyRight2Mat = new Matrix4(frontBodyRight2.matrix);
+  frontBodyRight2.matrix.scale(0.10, 0.12, 0.01);
+  frontBodyRight2.render();
+
+  //front body cube right side piece 3 | parent: front body right side 2
+  var frontBodyRight3 = new Cube();
+  frontBodyRight3.color = [0, 0, 1, 1.0];
+  frontBodyRight3.matrix = new Matrix4(frontBodyRight2Mat);
+  frontBodyRight3.matrix.translate(0.0, 0.01, -0.015);
+  var frontBodyRight3Mat = new Matrix4(frontBodyRight3.matrix);
+  frontBodyRight3.matrix.scale(0.07, 0.09, 0.01);
+  frontBodyRight3.render();
+
+
+
 
   //draw a middle body cube (red) | parent: front body
   var middleBody = new Cube();
