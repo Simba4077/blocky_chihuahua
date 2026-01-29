@@ -239,6 +239,42 @@ function renderAllShapes(){
   middleBodyUnderbelly2.matrix.scale(0.15, 0.015, 0.15);
   middleBodyUnderbelly2.render();
 
+  //middle body right side piece | parent: middle body
+  var middleBodyRight = new Cube();
+  middleBodyRight.color = [1, 1, 0, 1.0];
+  middleBodyRight.matrix = new Matrix4(middleBodyFrame);
+  middleBodyRight.matrix.translate(0.0, 0.015, -0.01);
+  var middleBodyRightMat = new Matrix4(middleBodyRight.matrix);
+  middleBodyRight.matrix.scale(0.2, 0.175, 0.01);
+  middleBodyRight.render();
+
+  //middle body right side piece 2 | parent: middle body right side
+  var middleBodyRight2 = new Cube();
+  middleBodyRight2.color = [0, 0, 1, 1.0];
+  middleBodyRight2.matrix = new Matrix4(middleBodyRightMat);
+  middleBodyRight2.matrix.translate(0.0, 0.015, -0.01);
+  var middleBodyRight2Mat = new Matrix4(middleBodyRight2.matrix);
+  middleBodyRight2.matrix.scale(0.2, 0.15, 0.01);
+  middleBodyRight2.render();
+
+  //middle body right side piece 3 | parent: middle body right side 2
+  var middleBodyRight3 = new Cube();
+  middleBodyRight3.color = [1, 1, 0, 1.0];
+  middleBodyRight3.matrix = new Matrix4(middleBodyRight2Mat);
+  middleBodyRight3.matrix.translate(0.0, 0.01, -0.015);
+  var middleBodyRight3Mat = new Matrix4(middleBodyRight3.matrix);
+  middleBodyRight3.matrix.scale(0.2, 0.1, 0.01);
+  middleBodyRight3.render();
+
+  //middle body right side piece 4 | parent: middle body right side 3
+  var middleBodyRight4 = new Cube();
+  middleBodyRight4.color = [1,0,1,1.0];
+  middleBodyRight4.matrix = new Matrix4(middleBodyRight3Mat);
+  middleBodyRight4.matrix.translate(0.05, 0.008, -0.02);
+  middleBodyRight4.matrix.scale(0.13, 0.08, 0.01);
+  middleBodyRight4.render();
+
+
   //draw a back body cube (brown) | parent: middle body
   var backBody = new Cube();
   backBody.color = [0.8235, 0.7059, 0.5490, 1.0];
