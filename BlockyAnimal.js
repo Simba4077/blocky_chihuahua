@@ -177,7 +177,7 @@ function convertCoordinatesEventToGL(ev) {
 
 function updateAnimationAngles(){
   if(g_headAnimation){
-    g_headAngle = 45*Math.sin(g_seconds);
+    g_headAngle = 10*Math.sin(g_seconds);
   }
 }
 
@@ -206,8 +206,8 @@ function renderAllShapes(){
   var head = new Cube();
   head.color = [0.8235, 0.7059, 0.5490, 1.0];
   head.matrix = new Matrix4(bodyFrame);
-  head.matrix.rotate(-g_headAngle, 0, 1, 0);
   head.matrix.translate(0.6, 0.1, 0.025);
+  head.matrix.rotate(-g_headAngle, 0, 1, 0);
   head.matrix.scale(.22,0.25,0.25);
   head.render();
 
