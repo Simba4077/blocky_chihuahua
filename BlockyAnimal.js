@@ -248,6 +248,63 @@ function renderAllShapes(){
   backBodyUnderbelly.matrix.scale(0.1, 0.02, 0.25);
   backBodyUnderbelly.render();
 
+  //back body cube top | parent: back body
+  var backBodyTop = new Cube();
+  backBodyTop.color = [0,1,1,1.0];
+  backBodyTop.matrix = new Matrix4(backBodyFrame);
+  backBodyTop.matrix.translate(0.025, 0.15, 0.0);
+  backBodyTop.matrix.scale(0.15, 0.015, 0.25);
+  backBodyTop.render();
+
+  //base of tail1 | parent: back body
+  var tailBase1 = new Cube();
+  tailBase1.color = [0.8235, 1.0, 0.5490, 1.0];
+  tailBase1.matrix = new Matrix4(backBodyFrame);
+  tailBase1.matrix.translate(-0.05, 0.08, 0.08);
+  var tailBase1FrameMat = new Matrix4(tailBase1.matrix);
+  tailBase1.matrix.scale(0.05, 0.05, 0.075);
+  tailBase1.render();
+
+  var tailBase2 = new Cube();
+  tailBase2.color = [1, 0.5, 0.3490, 1.0];
+  tailBase2.matrix = new Matrix4(tailBase1FrameMat);
+  tailBase2.matrix.translate(-0.02, 0.02, 0.01);
+  var tailBase2FrameMat = new Matrix4(tailBase2.matrix);
+  tailBase2.matrix.scale(0.02, 0.04, 0.06);
+  tailBase2.render();
+
+  var tailBase3 = new Cube();
+  tailBase3.color = [0,1,1,1];
+  tailBase3.matrix = new Matrix4(tailBase2FrameMat);
+  tailBase3.matrix.translate(-0.02, 0.01, 0.005);
+  var tailBase3FrameMat = new Matrix4(tailBase3.matrix);
+  tailBase3.matrix.scale(0.02, 0.05, 0.05);
+  tailBase3.render();
+
+  var tailBase4 = new Cube();
+  tailBase4.color = [0.8235, 0.7059, 0.5490, 1.0];
+  tailBase4.matrix = new Matrix4(tailBase3FrameMat);
+  tailBase4.matrix.translate(-0.006, 0.02, 0.005);
+  var tailBase4FrameMat = new Matrix4(tailBase4.matrix);
+  tailBase4.matrix.scale(0.02, 0.07, 0.03);
+  tailBase4.render();
+
+  var tail1Base5 = new Cube();
+  tail1Base5.color = [1,0,1,1.0];
+  tail1Base5.matrix = new Matrix4(tailBase4FrameMat);
+  tail1Base5.matrix.translate(-0.01, 0.03, 0.002);
+  var tail1Base5FrameMat = new Matrix4(tail1Base5.matrix);
+  tail1Base5.matrix.scale(0.02, 0.08, 0.02);
+  tail1Base5.render();
+
+  var tailTip = new Cube();
+  tailTip.color = [1,1,0,1.0];
+  tailTip.matrix = new Matrix4(tail1Base5FrameMat);
+  tailTip.matrix.translate(0.003, 0.062, 0.001);
+  tailTip.matrix.rotate(-40,0,0,1);
+  tailTip.matrix.scale(0.02, 0.05, 0.015);
+  tailTip.render();
+
   //---------------------------------------
 
   //draw a head cube | parent: front body
@@ -375,7 +432,6 @@ function renderAllShapes(){
   frontRightPaw.render();
 
   //---------------------------------------
-
 
   //my reference cube with low alpha, og coordinates
   var ref = new Cube();
