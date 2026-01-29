@@ -212,12 +212,21 @@ function renderAllShapes(){
   head.render();
 
   //back right leg | parent: body
-  var backRightLeg = new Cube();
-  backRightLeg.color = [0.8235, 0.7059, 0.5490, 1.0];
-  backRightLeg.matrix = new Matrix4(bodyFrame);
-  backRightLeg.matrix.translate(0.05, -0.15, 0.0);
-  backRightLeg.matrix.scale(.05, 0.15, 0.05);
-  backRightLeg.render();
+  var backRightLeg1 = new Cube();
+  backRightLeg1.color = [1,0, 0, 1.0];
+  backRightLeg1.matrix = new Matrix4(bodyFrame);
+  backRightLeg1.matrix.translate(0.05, -0.07, 0.0);
+  var backRightKnee = new Matrix4(backRightLeg1.matrix);
+  backRightLeg1.matrix.scale(.05, 0.07, 0.05);
+  backRightLeg1.render();
+
+  var backRightLeg2 = new Cube();
+  backRightLeg2.color = [0.8235, 0.7059, 0.5490, 1.0];
+  backRightLeg2.matrix = new Matrix4(backRightKnee);
+  backRightLeg2.matrix.translate(0, -0.07, 0.0);
+  backRightLeg2.matrix.scale(.05, 0.07, 0.05);
+  backRightLeg2.render();
+
 
   //back left leg | parent: body
   var backLeftLeg = new Cube();
