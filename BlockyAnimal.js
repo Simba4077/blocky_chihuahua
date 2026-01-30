@@ -557,6 +557,25 @@ function renderAllShapes(){
   headFace2.matrix.scale(0.008, 0.12, 0.1);
   headFace2.render();
 
+  //left eye | parent: head face 2
+  var leftEye = new Cube();
+  leftEye.color = [0, 0, 0, 1.0];
+  leftEye.matrix = new Matrix4(headFace2Mat);
+  leftEye.matrix.translate(0.005, 0.09, 0.09);
+  leftEye.matrix.rotate(-g_headAngle, 0, 1, 0);
+  leftEye.matrix.scale(0.02, 0.03, 0.03);
+  leftEye.render();
+
+  //right eye | parent: head face 2
+  var rightEye = new Cube();
+  rightEye.color = [0, 0, 0, 1.0];
+  rightEye.matrix = new Matrix4(headFace2Mat);
+  rightEye.matrix.translate(0.005, 0.09, -0.002);
+  rightEye.matrix.rotate(-g_headAngle, 0, 1, 0);
+  rightEye.matrix.scale(0.02, 0.03, 0.03);
+  rightEye.render();
+
+
   //draw top jaw | parent: head face 2
   var headTopJaw = new Cube();
   headTopJaw.color = [1, 0, 1, 1.0];
