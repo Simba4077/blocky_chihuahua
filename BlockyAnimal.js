@@ -572,10 +572,22 @@ function renderAllShapes(){
   var headTopJaw2 = new Cube();
   headTopJaw2.color = [0, 0, 1, 1.0];
   headTopJaw2.matrix = new Matrix4(headTopJawMat);
-  headTopJaw2.matrix.translate(-0.001, 0.01, 0.02);
+  headTopJaw2.matrix.translate(-0.001, 0.01, 0.015);
+  var headTopJaw2Mat = new Matrix4(headTopJaw2.matrix);
   headTopJaw2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headTopJaw2.matrix.scale(0.04, 0.01, 0.04);
   headTopJaw2.render();
+
+  //draw top jaw 3 | parent: head top jaw 2
+  var headTopJaw3 = new Cube();
+  headTopJaw3.color = [1,0,0,1];
+  headTopJaw3.matrix = new Matrix4(headTopJaw2Mat);
+  headTopJaw3.matrix.translate(0.001, 0.008, 0.01);
+  headTopJaw3.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTopJaw3.matrix.scale(0.03, 0.008, 0.02);
+  headTopJaw3.render();
+
+
 
 
 
