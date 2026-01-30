@@ -536,6 +536,35 @@ function renderAllShapes(){
   head.matrix.scale(.18,0.18,0.18);
   head.render();
 
+  //draw head back piece | parent: head
+  var headBack = new Cube();
+  headBack.color = [1, 1, 0, 1.0];
+  headBack.matrix = new Matrix4(headFrame);
+  headBack.matrix.translate(-0.01, 0.08, 0.014);
+  var headBackMat = new Matrix4(headBack.matrix);
+  headBack.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headBack.matrix.scale(0.01, 0.09, 0.15);
+  headBack.render();
+
+  //draw head back piece 2 | parent: head back
+  var headBack2 = new Cube();
+  headBack2.color = [1, 0, 1, 1.0];
+  headBack2.matrix = new Matrix4(headBackMat);
+  headBack2.matrix.translate(-0.01, 0.01, 0.025);
+  var headBack2Mat = new Matrix4(headBack2.matrix);
+  headBack2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headBack2.matrix.scale(0.008, 0.07, 0.1);
+  headBack2.render();
+
+  //draw head back piece 3 | parent: head back 2
+  var headBack3 = new Cube();
+  headBack3.color = [0, 0, 1, 1.0];
+  headBack3.matrix = new Matrix4(headBack2Mat);
+  headBack3.matrix.translate(-0.005, 0.008, 0.015);
+  headBack3.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headBack3.matrix.scale(0.005, 0.05, 0.07);
+  headBack3.render();
+
 
   //draw front of head (face) | parent: head
   var headFace = new Cube();
