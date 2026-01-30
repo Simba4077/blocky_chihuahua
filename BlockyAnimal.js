@@ -559,38 +559,32 @@ function renderAllShapes(){
 
   //draw top jaw | parent: head face 2
   var headTopJaw = new Cube();
-  headTopJaw.color = [1, 0, 0, 1.0];
+  headTopJaw.color = [1, 0, 1, 1.0];
   headTopJaw.matrix = new Matrix4(headFace2Mat);
-  headTopJaw.matrix.translate(0.005, 0.04, 0.015);
-  headTopJaw.matrix.rotate(-30,0,0,1);
+  headTopJaw.matrix.translate(0.001, 0.025, 0.0025);
   var headTopJawMat = new Matrix4(headTopJaw.matrix);
   headTopJaw.matrix.rotate(-g_headAngle, 0, 1, 0);
-  headTopJaw.matrix.scale(0.05, 0.01, 0.07);
+  headTopJaw.matrix.scale(0.05, 0.05, 0.1);
   headTopJaw.render();
 
-  //draw top jaw 2 | parent: head top jaw
-  var headTopJaw2 = new Cube();
-  headTopJaw2.color = [0, 0, 1, 1.0];
-  headTopJaw2.matrix = new Matrix4(headTopJawMat);
-  headTopJaw2.matrix.translate(-0.001, 0.01, 0.015);
-  var headTopJaw2Mat = new Matrix4(headTopJaw2.matrix);
-  headTopJaw2.matrix.rotate(-g_headAngle, 0, 1, 0);
-  headTopJaw2.matrix.scale(0.04, 0.01, 0.04);
-  headTopJaw2.render();
-
-  //draw top jaw 3 | parent: head top jaw 2
-  var headTopJaw3 = new Cube();
-  headTopJaw3.color = [1,0,0,1];
-  headTopJaw3.matrix = new Matrix4(headTopJaw2Mat);
-  headTopJaw3.matrix.translate(0.001, 0.008, 0.01);
-  headTopJaw3.matrix.rotate(-g_headAngle, 0, 1, 0);
-  headTopJaw3.matrix.scale(0.03, 0.008, 0.02);
-  headTopJaw3.render();
+  //draw nose | parent: head top jaw
+  var headNose = new Cube();
+  headNose.color = [0, 0, 0, 1.0];
+  headNose.matrix = new Matrix4(headTopJawMat);
+  headNose.matrix.translate(0.05, 0.015, 0.04);
+  headNose.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headNose.matrix.scale(0.02, 0.02, 0.02);
+  headNose.render();
 
 
-
-
-
+  //draw bottom jaw | parent: head face 2
+  var headBottomJaw = new Cube();
+  headBottomJaw.color = [1, 0, 1, 1.0];
+  headBottomJaw.matrix = new Matrix4(headFace2Mat);
+  headBottomJaw.matrix.translate(0.001, -0.005, 0.005);
+  headBottomJaw.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headBottomJaw.matrix.scale(0.05, 0.045, 0.09);
+  headBottomJaw.render();
 
   //draw head right piece | parent: head
   var headRight = new Cube();
