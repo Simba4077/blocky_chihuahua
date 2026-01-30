@@ -610,9 +610,9 @@ function renderAllShapes(){
   var head = new Cube();
   head.color = [0.8235, 0.7059, 0.5490, 1.0];
   head.matrix = new Matrix4(frontBodyFrame);
-  head.matrix.translate(0.13, 0.1, 0.05);
-  var headFrame = new Matrix4(head.matrix);
+  head.matrix.translate(0.13, 0.1, 0.05);  
   head.matrix.rotate(-g_headAngle, 0, 1, 0);
+  var headFrame = new Matrix4(head.matrix); 
   head.matrix.scale(.18,0.18,0.18);
   head.render();
 
@@ -622,7 +622,6 @@ function renderAllShapes(){
   earBaseRight.matrix = new Matrix4(headFrame);
   earBaseRight.matrix.translate(0.1, 0.185, 0.005);
   var earBaseRightMat = new Matrix4(earBaseRight.matrix);
-  earBaseRight.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseRight.matrix.scale(0.06, 0.03, 0.06);
   earBaseRight.render();
 
@@ -632,7 +631,6 @@ function renderAllShapes(){
   earBaseRight2.matrix = new Matrix4(earBaseRightMat);
   earBaseRight2.matrix.translate(0.001, 0.03, 0.0);
   var earBaseRight2Mat = new Matrix4(earBaseRight2.matrix);
-  earBaseRight2.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseRight2.matrix.scale(0.045, 0.03, 0.045);
   earBaseRight2.render();
 
@@ -642,7 +640,6 @@ function renderAllShapes(){
   earBaseRight3.matrix = new Matrix4(earBaseRight2Mat);
   earBaseRight3.matrix.translate(0.004, 0.03, 0.0);
   var earBaseRight3Mat = new Matrix4(earBaseRight3.matrix);
-  earBaseRight3.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseRight3.matrix.scale(0.035, 0.025, 0.035);
   earBaseRight3.render();
 
@@ -651,7 +648,6 @@ function renderAllShapes(){
   earBaseRight4.color = [1,1,0,1.0];
   earBaseRight4.matrix = new Matrix4(earBaseRight3Mat);
   earBaseRight4.matrix.translate(0.003, 0.02, 0.0);
-  earBaseRight4.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseRight4.matrix.scale(0.025, 0.02, 0.025);
   earBaseRight4.render();
 
@@ -661,7 +657,6 @@ function renderAllShapes(){
   earBaseLeft.matrix = new Matrix4(headFrame);
   earBaseLeft.matrix.translate(0.1, 0.185, 0.12);
   var earBaseLeftMat = new Matrix4(earBaseLeft.matrix);
-  earBaseLeft.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseLeft.matrix.scale(0.06, 0.03, 0.06);
   earBaseLeft.render();
 
@@ -671,7 +666,6 @@ function renderAllShapes(){
   earBaseLeft2.matrix = new Matrix4(earBaseLeftMat);
   earBaseLeft2.matrix.translate(0.001, 0.03, 0.019);
   var earBaseLeft2Mat = new Matrix4(earBaseLeft2.matrix);
-  earBaseLeft2.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseLeft2.matrix.scale(0.045, 0.03, 0.045);
   earBaseLeft2.render();
 
@@ -681,7 +675,6 @@ function renderAllShapes(){
   earBaseLeft3.matrix = new Matrix4(earBaseLeft2Mat);
   earBaseLeft3.matrix.translate(0.004, 0.03, 0.019);
   var earBaseLeft3Mat = new Matrix4(earBaseLeft3.matrix);
-  earBaseLeft3.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseLeft3.matrix.scale(0.035, 0.025, 0.035);
   earBaseLeft3.render();
 
@@ -690,11 +683,8 @@ function renderAllShapes(){
   earBaseLeft4.color = [1,1,0,1.0];
   earBaseLeft4.matrix = new Matrix4(earBaseLeft3Mat);
   earBaseLeft4.matrix.translate(0.003, 0.02, 0.01);
-  earBaseLeft4.matrix.rotate(-g_headAngle, 0, 1, 0);
   earBaseLeft4.matrix.scale(0.025, 0.02, 0.025);
   earBaseLeft4.render();
-
-
 
 
   //draw head back piece | parent: head
@@ -703,7 +693,6 @@ function renderAllShapes(){
   headBack.matrix = new Matrix4(headFrame);
   headBack.matrix.translate(-0.01, 0.08, 0.014);
   var headBackMat = new Matrix4(headBack.matrix);
-  headBack.matrix.rotate(-g_headAngle, 0, 1, 0);
   headBack.matrix.scale(0.01, 0.09, 0.15);
   headBack.render();
 
@@ -713,7 +702,6 @@ function renderAllShapes(){
   headBack2.matrix = new Matrix4(headBackMat);
   headBack2.matrix.translate(-0.01, 0.01, 0.025);
   var headBack2Mat = new Matrix4(headBack2.matrix);
-  headBack2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headBack2.matrix.scale(0.008, 0.07, 0.1);
   headBack2.render();
 
@@ -722,7 +710,6 @@ function renderAllShapes(){
   headBack3.color = [0, 0, 1, 1.0];
   headBack3.matrix = new Matrix4(headBack2Mat);
   headBack3.matrix.translate(-0.005, 0.008, 0.015);
-  headBack3.matrix.rotate(-g_headAngle, 0, 1, 0);
   headBack3.matrix.scale(0.005, 0.05, 0.07);
   headBack3.render();
 
@@ -733,7 +720,6 @@ function renderAllShapes(){
   headFace.matrix = new Matrix4(headFrame);
   headFace.matrix.translate(0.18, 0.015, 0.015);
   var headFaceMat = new Matrix4(headFace.matrix);
-  headFace.matrix.rotate(-g_headAngle, 0, 1, 0);
   headFace.matrix.scale(0.01, 0.15, .15);
   headFace.render();
 
@@ -743,7 +729,6 @@ function renderAllShapes(){
   headFace2.matrix = new Matrix4(headFaceMat);
   headFace2.matrix.translate(0.01, 0.015, 0.025);
   var headFace2Mat = new Matrix4(headFace2.matrix);
-  headFace2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headFace2.matrix.scale(0.008, 0.12, 0.1);
   headFace2.render();
 
@@ -752,7 +737,6 @@ function renderAllShapes(){
   leftEye.color = [0, 0, 0, 1.0];
   leftEye.matrix = new Matrix4(headFace2Mat);
   leftEye.matrix.translate(0.005, 0.09, 0.09);
-  leftEye.matrix.rotate(-g_headAngle, 0, 1, 0);
   leftEye.matrix.scale(0.02, 0.03, 0.03);
   leftEye.render();
 
@@ -761,7 +745,6 @@ function renderAllShapes(){
   rightEye.color = [0, 0, 0, 1.0];
   rightEye.matrix = new Matrix4(headFace2Mat);
   rightEye.matrix.translate(0.005, 0.09, -0.002);
-  rightEye.matrix.rotate(-g_headAngle, 0, 1, 0);
   rightEye.matrix.scale(0.02, 0.03, 0.03);
   rightEye.render();
 
@@ -772,7 +755,6 @@ function renderAllShapes(){
   headTopJaw.matrix = new Matrix4(headFace2Mat);
   headTopJaw.matrix.translate(0.001, 0.025, 0.0025);
   var headTopJawMat = new Matrix4(headTopJaw.matrix);
-  headTopJaw.matrix.rotate(-g_headAngle, 0, 1, 0);
   headTopJaw.matrix.scale(0.05, 0.05, 0.1);
   headTopJaw.render();
 
@@ -781,7 +763,6 @@ function renderAllShapes(){
   headNose.color = [0, 0, 0, 1.0];
   headNose.matrix = new Matrix4(headTopJawMat);
   headNose.matrix.translate(0.05, 0.015, 0.04);
-  headNose.matrix.rotate(-g_headAngle, 0, 1, 0);
   headNose.matrix.scale(0.02, 0.02, 0.02);
   headNose.render();
 
@@ -791,7 +772,6 @@ function renderAllShapes(){
   headBottomJaw.color = [1, 0, 1, 1.0];
   headBottomJaw.matrix = new Matrix4(headFace2Mat);
   headBottomJaw.matrix.translate(0.001, -0.005, 0.005);
-  headBottomJaw.matrix.rotate(-g_headAngle, 0, 1, 0);
   headBottomJaw.matrix.scale(0.05, 0.045, 0.09);
   headBottomJaw.render();
 
@@ -801,7 +781,6 @@ function renderAllShapes(){
   headRight.matrix = new Matrix4(headFrame);
   headRight.matrix.translate(0.015, 0.015, -0.012);
   var headRightMat = new Matrix4(headRight.matrix);
-  headRight.matrix.rotate(-g_headAngle, 0, 1, 0);
   headRight.matrix.scale(0.15, 0.15, 0.02);
   headRight.render();
 
@@ -811,7 +790,6 @@ function renderAllShapes(){
   headRight2.matrix = new Matrix4(headRightMat);
   headRight2.matrix.translate(0.025, 0.015, -0.01);
   var headRight2Mat = new Matrix4(headRight2.matrix);
-  headRight2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headRight2.matrix.scale(0.1, 0.12, 0.01);
   headRight2.render();
 
@@ -820,7 +798,6 @@ function renderAllShapes(){
   headRight3.color = [0, 0, 1, 1.0];
   headRight3.matrix = new Matrix4(headRight2Mat);
   headRight3.matrix.translate(0.015, 0.01, -0.005);
-  headRight3.matrix.rotate(-g_headAngle, 0, 1, 0);
   headRight3.matrix.scale(0.07, 0.09, 0.01);
   headRight3.render();
 
@@ -830,7 +807,6 @@ function renderAllShapes(){
   headLeft.matrix = new Matrix4(headFrame);
   headLeft.matrix.translate(0.015, 0.015, 0.18);
   var headLeftMat = new Matrix4(headLeft.matrix);
-  headLeft.matrix.rotate(-g_headAngle, 0, 1, 0);
   headLeft.matrix.scale(0.15, 0.15, 0.02);
   headLeft.render();
 
@@ -840,7 +816,6 @@ function renderAllShapes(){
   headLeft2.matrix = new Matrix4(headLeftMat);
   headLeft2.matrix.translate(0.025, 0.015, 0.02);
   var headLeft2Mat = new Matrix4(headLeft2.matrix);
-  headLeft2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headLeft2.matrix.scale(0.1, 0.12, 0.01);
   headLeft2.render();
 
@@ -849,11 +824,8 @@ function renderAllShapes(){
   headLeft3.color = [0, 0, 1, 1.0];
   headLeft3.matrix = new Matrix4(headLeft2Mat);
   headLeft3.matrix.translate(0.015, 0.01, 0.01);
-  headLeft3.matrix.rotate(-g_headAngle, 0, 1, 0);
   headLeft3.matrix.scale(0.07, 0.09, 0.01);
   headLeft3.render();
-
-
 
   //draw top of head | parent: head
   var headTop = new Cube();
@@ -861,7 +833,6 @@ function renderAllShapes(){
   headTop.matrix = new Matrix4(headFrame);
   headTop.matrix.translate(0.015, 0.18, 0.015);
   var headTopFrame = new Matrix4(headTop.matrix);
-  headTop.matrix.rotate(-g_headAngle, 0, 1, 0);
   headTop.matrix.scale(0.15, 0.01, 0.15);
   headTop.render();
 
@@ -871,7 +842,6 @@ function renderAllShapes(){
   headTop2.matrix = new Matrix4(headTopFrame);
   headTop2.matrix.translate(0.025, 0.015, 0.025);
   var headTop2Frame = new Matrix4(headTop2.matrix);
-  headTop2.matrix.rotate(-g_headAngle, 0, 1, 0);
   headTop2.matrix.scale(0.1, 0.01, 0.1);
   headTop2.render();
 
@@ -880,7 +850,6 @@ function renderAllShapes(){
   headTop3.color = [0,0,1,1.0];
   headTop3.matrix = new Matrix4(headTop2Frame);
   headTop3.matrix.translate(0.015, 0.01, 0.015);
-  headTop3.matrix.rotate(-g_headAngle, 0, 1, 0);
   headTop3.matrix.scale(0.07, 0.01, 0.07);
   headTop3.render();
 
