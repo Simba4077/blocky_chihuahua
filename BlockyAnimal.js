@@ -223,6 +223,14 @@ function renderAllShapes(){
   frontBodyFront2.matrix.scale(0.02, 0.08, 0.15);
   frontBodyFront2.render();
 
+  //front body cube front piece 3 | parent: front body front 2
+  var frontBodyFront3 = new Cube();
+  frontBodyFront3.color = [0, 0, 1, 1.0];
+  frontBodyFront3.matrix = new Matrix4(frontBodyFront2Mat);
+  frontBodyFront3.matrix.translate(0.01, 0.008, 0.025);
+  frontBodyFront3.matrix.scale(0.02, 0.05, 0.1);
+  frontBodyFront3.render();
+
 
   //front body top cube | parent: front body
   var frontBodyTop = new Cube();
@@ -412,6 +420,59 @@ function renderAllShapes(){
   var backBodyFrame = new Matrix4(backBody.matrix);
   backBody.matrix.scale(0.15, 0.15, 0.25);
   backBody.render();
+
+  //left booty cheek | parent: back body
+  var backBodyButtLeft = new Cube();
+  backBodyButtLeft.color = [1,0,1,1.0];
+  backBodyButtLeft.matrix = new Matrix4(backBodyFrame);
+  backBodyButtLeft.matrix.translate(-0.01, 0.035, 0.15);
+  var backBodyButtLeftMat = new Matrix4(backBodyButtLeft.matrix);
+  backBodyButtLeft.matrix.scale(0.01, 0.075, 0.075);
+  backBodyButtLeft.render();
+
+  //left booty cheek 2 | parent: left booty cheek
+  var backBodyButtLeft2 = new Cube();
+  backBodyButtLeft2.color = [0,0,1,1.0];
+  backBodyButtLeft2.matrix = new Matrix4(backBodyButtLeftMat);
+  backBodyButtLeft2.matrix.translate(-0.005, 0.015, 0.015);
+  var backBodyButtLeft2Mat = new Matrix4(backBodyButtLeft2.matrix);
+  backBodyButtLeft2.matrix.scale(0.005, 0.05, 0.05);
+  backBodyButtLeft2.render();
+
+  //left booty cheek 3 | parent: left booty cheek 2
+  var backBodyButtLeft3 = new Cube();
+  backBodyButtLeft3.color = [1,1,0,1.0];
+  backBodyButtLeft3.matrix = new Matrix4(backBodyButtLeft2Mat);
+  backBodyButtLeft3.matrix.translate(-0.004, 0.01, 0.01);
+  backBodyButtLeft3.matrix.scale(0.008, 0.03, 0.03);
+  backBodyButtLeft3.render();
+  
+  //right booty cheek | parent: back body
+  var backBodyButtRight = new Cube();
+  backBodyButtRight.color = [1,0,1,1.0];
+  backBodyButtRight.matrix = new Matrix4(backBodyFrame);
+  backBodyButtRight.matrix.translate(-0.01, 0.035, 0.009);
+  var backBodyButtRightMat = new Matrix4(backBodyButtRight.matrix);
+  backBodyButtRight.matrix.scale(0.01, 0.075, 0.075);
+  backBodyButtRight.render();
+
+  //right booty cheek 2 | parent: right booty cheek
+  var backBodyButtRight2 = new Cube();
+  backBodyButtRight2.color = [0,0,1,1.0];
+  backBodyButtRight2.matrix = new Matrix4(backBodyButtRightMat);
+  backBodyButtRight2.matrix.translate(-0.005, 0.015, 0.015);
+  var backBodyButtRight2Mat = new Matrix4(backBodyButtRight2.matrix);
+  backBodyButtRight2.matrix.scale(0.005, 0.05, 0.05);
+  backBodyButtRight2.render();
+
+  //right booty cheek 3 | parent: right booty cheek 2
+  var backBodyButtRight3 = new Cube();
+  backBodyButtRight3.color = [1,1,0,1.0];
+  backBodyButtRight3.matrix = new Matrix4(backBodyButtRight2Mat);
+  backBodyButtRight3.matrix.translate(-0.004, 0.01, 0.01);
+  backBodyButtRight3.matrix.scale(0.008, 0.03, 0.03);
+  backBodyButtRight3.render();
+
 
   //back body cube right side | parent: back body
   var backBodyRight = new Cube();
