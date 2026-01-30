@@ -536,6 +536,50 @@ function renderAllShapes(){
   head.matrix.scale(.18,0.18,0.18);
   head.render();
 
+
+  //draw front of head (face) | parent: head
+  var headFace = new Cube();
+  headFace.color = [1, 0.8431, 0.0, 1.0];
+  headFace.matrix = new Matrix4(headFrame);
+  headFace.matrix.translate(0.18, 0.015, 0.015);
+  var headFaceMat = new Matrix4(headFace.matrix);
+  headFace.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headFace.matrix.scale(0.01, 0.15, .15);
+  headFace.render();
+
+  // //draw front of head 2 | parent: head face
+  var headFace2 = new Cube();
+  headFace2.color = [1, 1, 0, 1.0];
+  headFace2.matrix = new Matrix4(headFaceMat);
+  headFace2.matrix.translate(0.01, 0.015, 0.025);
+  var headFace2Mat = new Matrix4(headFace2.matrix);
+  headFace2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headFace2.matrix.scale(0.008, 0.12, 0.1);
+  headFace2.render();
+
+  //draw top jaw | parent: head face 2
+  var headTopJaw = new Cube();
+  headTopJaw.color = [1, 0, 0, 1.0];
+  headTopJaw.matrix = new Matrix4(headFace2Mat);
+  headTopJaw.matrix.translate(0.005, 0.04, 0.015);
+  headTopJaw.matrix.rotate(-30,0,0,1);
+  var headTopJawMat = new Matrix4(headTopJaw.matrix);
+  headTopJaw.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTopJaw.matrix.scale(0.05, 0.01, 0.07);
+  headTopJaw.render();
+
+  //draw top jaw 2 | parent: head top jaw
+  var headTopJaw2 = new Cube();
+  headTopJaw2.color = [0, 0, 1, 1.0];
+  headTopJaw2.matrix = new Matrix4(headTopJawMat);
+  headTopJaw2.matrix.translate(-0.001, 0.01, 0.02);
+  headTopJaw2.matrix.rotate(-g_headAngle, 0, 1, 0);
+  headTopJaw2.matrix.scale(0.04, 0.01, 0.04);
+  headTopJaw2.render();
+
+
+
+
   //draw head right piece | parent: head
   var headRight = new Cube();
   headRight.color = [1, 1, 0, 1.0];
@@ -593,7 +637,6 @@ function renderAllShapes(){
   headLeft3.matrix.rotate(-g_headAngle, 0, 1, 0);
   headLeft3.matrix.scale(0.07, 0.09, 0.01);
   headLeft3.render();
-
 
 
 
