@@ -205,6 +205,16 @@ function renderAllShapes(){
   frontBody.matrix.scale(0.18, 0.18, 0.28); 
   frontBody.render();
 
+  //front body cube front piece | parent: front body
+  var frontBodyFront = new Cube();
+  frontBodyFront.color = [1, 1, 0, 1.0];
+  frontBodyFront.matrix = new Matrix4(frontBodyFrame);
+  frontBodyFront.matrix.translate(0.19, 0.015, -0.1);
+  var frontBodyFrontMat = new Matrix4(frontBodyFront.matrix);
+  frontBodyFront.matrix.scale(0.02, 0.1, 0.1);
+  frontBodyFront.render();
+
+
   //front body top cube | parent: front body
   var frontBodyTop = new Cube();
   frontBodyTop.color = [1,1,0,1.0];
