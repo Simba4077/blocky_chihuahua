@@ -209,10 +209,19 @@ function renderAllShapes(){
   var frontBodyFront = new Cube();
   frontBodyFront.color = [1, 1, 0, 1.0];
   frontBodyFront.matrix = new Matrix4(frontBodyFrame);
-  frontBodyFront.matrix.translate(0.19, 0.015, -0.1);
+  frontBodyFront.matrix.translate(0.18, 0.015, 0.0375);
   var frontBodyFrontMat = new Matrix4(frontBodyFront.matrix);
-  frontBodyFront.matrix.scale(0.02, 0.1, 0.1);
+  frontBodyFront.matrix.scale(0.02, 0.1, 0.2);
   frontBodyFront.render();
+
+  //front body cube front piece 2 | parent: front body front
+  var frontBodyFront2 = new Cube();
+  frontBodyFront2.color = [1, 0, 1, 1.0];
+  frontBodyFront2.matrix = new Matrix4(frontBodyFrontMat);
+  frontBodyFront2.matrix.translate(0.02, 0.01, 0.025);
+  var frontBodyFront2Mat = new Matrix4(frontBodyFront2.matrix);
+  frontBodyFront2.matrix.scale(0.02, 0.08, 0.15);
+  frontBodyFront2.render();
 
 
   //front body top cube | parent: front body
