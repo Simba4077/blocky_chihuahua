@@ -462,68 +462,22 @@ function renderScene() {
   head.render();
 
   // ears (right)
-  var earBaseRight = new Cube();
+  var earBaseRight = new Cone();
   earBaseRight.color = [0.725, 0.6, 0.463, 1.0];
   earBaseRight.matrix = new Matrix4(headFrame);
-  earBaseRight.matrix.translate(0.1, 0.185, 0.005);
-  var earBaseRightMat = new Matrix4(earBaseRight.matrix);
-  earBaseRight.matrix.scale(0.06, 0.03, 0.06);
+  earBaseRight.matrix.translate(0.1, 0.185, 0.01);
+  earBaseRight.matrix.scale(0.1, 0.1, 0.1);
   earBaseRight.render();
 
-  var earBaseRight2 = new Cube();
-  earBaseRight2.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseRight2.matrix = new Matrix4(earBaseRightMat);
-  earBaseRight2.matrix.translate(0.001, 0.03, 0.0);
-  var earBaseRight2Mat = new Matrix4(earBaseRight2.matrix);
-  earBaseRight2.matrix.scale(0.045, 0.03, 0.045);
-  earBaseRight2.render();
-
-  var earBaseRight3 = new Cube();
-  earBaseRight3.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseRight3.matrix = new Matrix4(earBaseRight2Mat);
-  earBaseRight3.matrix.translate(0.004, 0.03, 0.0);
-  var earBaseRight3Mat = new Matrix4(earBaseRight3.matrix);
-  earBaseRight3.matrix.scale(0.035, 0.025, 0.035);
-  earBaseRight3.render();
-
-  var earBaseRight4 = new Cube();
-  earBaseRight4.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseRight4.matrix = new Matrix4(earBaseRight3Mat);
-  earBaseRight4.matrix.translate(0.003, 0.02, 0.0);
-  earBaseRight4.matrix.scale(0.025, 0.02, 0.025);
-  earBaseRight4.render();
-
+  
   // ears (left)
-  var earBaseLeft = new Cube();
+  var earBaseLeft = new Cone();
   earBaseLeft.color = [0.725, 0.6, 0.463, 1.0];
   earBaseLeft.matrix = new Matrix4(headFrame);
-  earBaseLeft.matrix.translate(0.1, 0.185, 0.12);
-  var earBaseLeftMat = new Matrix4(earBaseLeft.matrix);
-  earBaseLeft.matrix.scale(0.06, 0.03, 0.06);
+  earBaseLeft.matrix.translate(0.1, 0.185, 0.16);
+  earBaseLeft.matrix.scale(0.1, 0.1, 0.1);
   earBaseLeft.render();
 
-  var earBaseLeft2 = new Cube();
-  earBaseLeft2.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseLeft2.matrix = new Matrix4(earBaseLeftMat);
-  earBaseLeft2.matrix.translate(0.001, 0.03, 0.019);
-  var earBaseLeft2Mat = new Matrix4(earBaseLeft2.matrix);
-  earBaseLeft2.matrix.scale(0.045, 0.03, 0.045);
-  earBaseLeft2.render();
-
-  var earBaseLeft3 = new Cube();
-  earBaseLeft3.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseLeft3.matrix = new Matrix4(earBaseLeft2Mat);
-  earBaseLeft3.matrix.translate(0.004, 0.03, 0.019);
-  var earBaseLeft3Mat = new Matrix4(earBaseLeft3.matrix);
-  earBaseLeft3.matrix.scale(0.035, 0.025, 0.035);
-  earBaseLeft3.render();
-
-  var earBaseLeft4 = new Cube();
-  earBaseLeft4.color = [0.725, 0.6, 0.463, 1.0];
-  earBaseLeft4.matrix = new Matrix4(earBaseLeft3Mat);
-  earBaseLeft4.matrix.translate(0.003, 0.02, 0.01);
-  earBaseLeft4.matrix.scale(0.025, 0.02, 0.025);
-  earBaseLeft4.render();
 
   // head back pieces
   var headBack = new Cube();
