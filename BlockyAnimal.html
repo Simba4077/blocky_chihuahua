@@ -1,359 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Blocky Animal Controls</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blocky Animal Controls</title>
 
-    <style>
-      :root{
-        --bg: #0b1220;
-        --panel: rgba(255,255,255,0.06);
-        --panel2: rgba(255,255,255,0.08);
-        --border: rgba(255,255,255,0.12);
-        --text: rgba(255,255,255,0.88);
-        --muted: rgba(255,255,255,0.62);
-        --accent: #6ee7ff;
-        --accent2: #a78bfa;
-        --shadow: 0 20px 60px rgba(0,0,0,0.45);
-        --radius: 16px;
-      }
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.12);
+      --text:rgba(255,255,255,0.88);
+      --muted:rgba(255,255,255,0.62);
+      --accent:#6ee7ff;
+      --shadow:0 20px 60px rgba(0,0,0,0.45);
+      --radius:16px;
+    }
 
-      * { box-sizing: border-box; }
-      body{
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-        color: var(--text);
-        background:
-          radial-gradient(1200px 700px at 20% 10%, rgba(110,231,255,0.16), transparent 60%),
-          radial-gradient(900px 600px at 80% 20%, rgba(167,139,250,0.16), transparent 55%),
-          radial-gradient(1000px 900px at 50% 90%, rgba(34,197,94,0.10), transparent 55%),
-          var(--bg);
-        min-height: 100vh;
-        padding: 24px;
-      }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg);
+      min-height:100vh;
+      padding:24px;
+    }
 
-      .app{
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 460px 1fr;
-        gap: 18px;
-        align-items: start;
-      }
+    .app{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:460px 1fr;
+      gap:18px;
+      align-items:start;
+    }
 
-      .card{
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(10px);
-      }
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
 
-      .header{
-        padding: 16px 16px 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-      }
-      .title{
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-      }
-      .subtitle{
-        font-size: 12px;
-        color: var(--muted);
-      }
+    .header{
+      padding:16px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
 
-      .canvasWrap{
-        padding: 14px;
-      }
+    .title{font-weight:700;}
+    .subtitle{font-size:12px;color:var(--muted);}
 
-      canvas{
-        width: 100%;
-        height: auto;
-        border-radius: 14px;
-        background: rgba(0,0,0,0.25);
-        border: 1px solid rgba(255,255,255,0.10);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-        display: block;
-      }
+    .canvasWrap{padding:14px;}
+    canvas{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:black;
+    }
 
-      .hud{
-        margin-top: 10px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: rgba(0,0,0,0.22);
-        border: 1px solid rgba(255,255,255,0.08);
-        color: var(--muted);
-        font-size: 12px;
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .note{
-        margin-top: 10px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #020c3b38;
-        border: 1px solid rgba(255,255,255,0.08);
-        color: var(--muted);
-        font-size: 12px;
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-        align-items: center;
-      }
-      #numdot{
-        margin: 0;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        color: rgba(255,255,255,0.82);
-      }
+    .hud,.note{
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
+      font-size:12px;
+      background:rgba(0,0,0,0.25);
+      border:1px solid rgba(255,255,255,0.08);
+    }
 
-      .controls{
-        padding: 14px;
-      }
+    .controls{padding:14px;}
 
-      .section{
-        padding: 12px;
-        border-radius: 14px;
-        background: var(--panel2);
-        border: 1px solid rgba(255,255,255,0.10);
-        margin-bottom: 12px;
-      }
-      .section h3{
-        margin: 0 0 10px;
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.72);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .section{
+      background:var(--panel2);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:12px;
+    }
 
-      .row{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
+    .section h3{
+      margin:0 0 10px;
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.7);
+    }
 
-      .control{
-        display: grid;
-        gap: 6px;
-        padding: 10px;
-        border-radius: 12px;
-        background: rgba(0,0,0,0.18);
-        border: 1px solid rgba(255,255,255,0.08);
-      }
-      .control label{
-        font-size: 12px;
-        color: rgba(255,255,255,0.78);
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-      }
-      .control label span{
-        color: var(--muted);
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 11px;
-      }
+    .control{
+      background:rgba(0,0,0,0.2);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:12px;
+      padding:10px;
+      display:grid;
+      gap:6px;
+    }
 
-      input[type="range"]{
-        width: 100%;
-        accent-color: var(--accent);
-      }
+    .control label{
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      color:rgba(255,255,255,0.8);
+    }
 
-      .btnRow{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
+    input[type="range"]{
+      width:100%;
+      accent-color:var(--accent);
+    }
 
-      button{
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.14);
-        background: rgba(0,0,0,0.22);
-        color: var(--text);
-        cursor: pointer;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-        transition: transform 0.08s ease, border-color 0.12s ease, background 0.12s ease;
-      }
-      button:hover{
-        border-color: rgba(110,231,255,0.40);
-        background: rgba(0,0,0,0.30);
-      }
-      button:active{
-        transform: translateY(1px);
-      }
+    .btnRow{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
 
-      .pill{
-        font-size: 11px;
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.14);
-        color: rgba(255,255,255,0.72);
-        background: rgba(0,0,0,0.18);
-      }
+    button{
+      padding:10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:rgba(0,0,0,0.25);
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
 
-      @media (max-width: 980px){
-        .app{ grid-template-columns: 1fr; }
-      }
-    </style>
-  </head>
+    /* ---- LEG GRID ---- */
+    .limbGrid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
 
-  <body onload="main()">
-    <div class="app">
-      <!-- LEFT: Canvas -->
-      <div class="card">
-        <div class="header">
-          <div>
-            <div class="title">Blocky Animal</div>
-          </div>
-        </div>
+    .limbCol{
+      display:grid;
+      gap:10px;
+    }
 
-        <div class="canvasWrap">
-          <canvas id="webgl" width="400" height="400">
-            Please use a browser that supports "canvas"
-          </canvas>
+    .limbColTitle{
+      text-align:center;
+      font-weight:700;
+      font-size:12px;
+      padding:6px;
+      border-radius:10px;
+      background:rgba(0,0,0,0.25);
+      border:1px solid rgba(255,255,255,0.1);
+    }
 
-          <div class="hud">
-            <div>HUD</div>
-            <p id="numdot">XXX</p>
-          </div>
-          <div class="note">
-            <div>Click and drag on the canvas to rotate!</div>
-          </div>
-          <div class = "note">
-            <div>Hold <strong>Shift</strong> and then click for a surprise</div>
-          </div>
-        </div>
-      </div>
+    @media(max-width:980px){
+      .app{grid-template-columns:1fr;}
+      .limbGrid{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
 
-      <!-- RIGHT: Controls -->
-      <div class="card">
-        <div class="header">
-          <div>
-            <div class="title">Controls</div>
-            <div class="subtitle">Sliders map directly to joint angles</div>
-          </div>
-          <div class="pill">live</div>
-        </div>
+<body onload="main()">
+<div class="app">
 
-        <div class="controls">
-          <div class="section">
-            <h3>
-              Global
-              <span class="pill">model</span>
-            </h3>
-            <div class="row">
-              <div class="control">
-                <label for="scaleSlide">Zoom <span>0.5 → 2.0</span></label>
-                <input type="range" min="0.5" max="2" step="0.1" value="2" id="scaleSlide" />
-              </div>
-
-              <div class="control">
-                <label for="headSlide">Head Rotation <span>-10 → 10</span></label>
-                <input type="range" min="-10" max="10" value="0" id="headSlide" />
-              </div>
-
-              <div class="control">
-                <label for="tailSlide">Tail Rotation <span>-15 → 15</span></label>
-                <input type="range" min="-15" max="15" value="0" id="tailSlide" />
-              </div>
-
-              <!-- empty spacer to keep grid even -->
-              <div style="opacity:0; pointer-events:none"></div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>
-              Animations
-              <span class="pill">toggles</span>
-            </h3>
-
-            <div class="control" style="margin-bottom:10px;">
-              <label>Walking Animation <span>ON / OFF</span></label>
-              <div class="btnRow">
-                <button type="button" id="animationWalkingOnButton">ON</button>
-                <button type="button" id="animationWalkingOffButton">OFF</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>
-              Right Side
-              <span class="pill">joints</span>
-            </h3>
-            <div class="row">
-              <div class="control">
-                <label for="rightFrontShoulderSlide">RF Shoulder <span>-15 → 15</span></label>
-                <input type="range" min="-15" max="15" value="0" id="rightFrontShoulderSlide" />
-              </div>
-              <div class="control">
-                <label for="rightFrontKneeSlide">RF Knee <span>-10 → 10</span></label>
-                <input type="range" min="-10" max="10" value="0" id="rightFrontKneeSlide" />
-              </div>
-
-              <div class="control">
-                <label for="rightBackShoulderSlide">RB Shoulder <span>-15 → 15</span></label>
-                <input type="range" min="-15" max="15" value="0" id="rightBackShoulderSlide" />
-              </div>
-              <div class="control">
-                <label for="rightBackKneeSlide">RB Knee <span>-10 → 10</span></label>
-                <input type="range" min="-10" max="10" value="0" id="rightBackKneeSlide" />
-              </div>
-            </div>
-          </div>
-
-          <div class="section" style="margin-bottom:0;">
-            <h3>
-              Left Side
-              <span class="pill">joints</span>
-            </h3>
-            <div class="row">
-              <div class="control">
-                <label for="leftFrontShoulderSlide">LF Shoulder <span>-15 → 15</span></label>
-                <input type="range" min="-15" max="15" value="0" id="leftFrontShoulderSlide" />
-              </div>
-              <div class="control">
-                <label for="leftFrontKneeSlide">LF Knee <span>-10 → 10</span></label>
-                <input type="range" min="-10" max="10" value="0" id="leftFrontKneeSlide" />
-              </div>
-
-              <div class="control">
-                <label for="leftBackShoulderSlide">LB Shoulder <span>-15 → 15</span></label>
-                <input type="range" min="-15" max="15" value="0" id="leftBackShoulderSlide" />
-              </div>
-              <div class="control">
-                <label for="leftBackKneeSlide">LB Knee <span>-10 → 10</span></label>
-                <input type="range" min="-10" max="10" value="0" id="leftBackKneeSlide" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="card">
+    <div class="header">
+      <div class="title">Blocky Animal</div>
     </div>
 
-    <!-- scripts -->
-    <script src="lib/webgl-utils.js"></script>
-    <script src="lib/webgl-debug.js"></script>
-    <script src="lib/cuon-utils.js"></script>
-    <script src="lib/cuon-matrix-cse160.js"></script>
-    <script src="Circle.js"></script>
-    <script src="Triangle.js"></script>
-    <script src="Point.js"></script>
-    <script src="Cube.js"></script>
-    <script src="Cone.js"></script>
-    <script src="drawBlockyAnimal.js"></script>
-    <script src="BlockyAnimal.js"></script>
-  </body>
+    <div class="canvasWrap">
+      <canvas id="webgl" width="400" height="400"></canvas>
+      <div class="hud"><p id="numdot">XXX</p></div>
+      <div class="note">Click & drag to rotate</div>
+      <div class="note">Press Shift and click for a surprise!</div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="title">Controls</div>
+      <div class="subtitle">Joint angles</div>
+    </div>
+
+    <div class="controls">
+
+      <div class="section">
+        <h3>Global</h3>
+        <div class="control">
+          <label>Scale</label>
+          <input type="range" min="0.5" max="2" step="0.1" id="scaleSlide" />
+        </div>
+        <div class="control">
+          <label>Head</label>
+          <input type="range" min="-10" max="10" id="headSlide" />
+        </div>
+        <div class="control">
+          <label>Tail</label>
+          <input type="range" min="-15" max="15" id="tailSlide" />
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Animation</h3>
+        <div class="btnRow">
+          <button id="animationWalkingOnButton">Walk ON</button>
+          <button id="animationWalkingOffButton">Walk OFF</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Legs</h3>
+
+        <div class="limbGrid">
+          <div class="limbCol">
+            <div class="limbColTitle">RF</div>
+            <div class="control"><label>Shoulder</label><input type="range" id="rightFrontShoulderSlide" min="-15" max="15"/></div>
+            <div class="control"><label>Knee</label><input type="range" id="rightFrontKneeSlide" min="-10" max="10"/></div>
+            <div class="control"><label>Paw</label><input type="range" id="rightFrontPawSlide" min="-10" max="10"/></div>
+          </div>
+
+          <div class="limbCol">
+            <div class="limbColTitle">LF</div>
+            <div class="control"><label>Shoulder</label><input type="range" id="leftFrontShoulderSlide" min="-15" max="15"/></div>
+            <div class="control"><label>Knee</label><input type="range" id="leftFrontKneeSlide" min="-10" max="10"/></div>
+            <div class="control"><label>Paw</label><input type="range" id="leftFrontPawSlide" min="-10" max="10"/></div>
+          </div>
+
+          <div class="limbCol">
+            <div class="limbColTitle">RB</div>
+            <div class="control"><label>Shoulder</label><input type="range" id="rightBackShoulderSlide" min="-15" max="15"/></div>
+            <div class="control"><label>Knee</label><input type="range" id="rightBackKneeSlide" min="-10" max="10"/></div>
+            <div class="control"><label>Paw</label><input type="range" id="rightBackPawSlide" min="-10" max="10"/></div>
+          </div>
+
+          <div class="limbCol">
+            <div class="limbColTitle">LB</div>
+            <div class="control"><label>Shoulder</label><input type="range" id="leftBackShoulderSlide" min="-15" max="15"/></div>
+            <div class="control"><label>Knee</label><input type="range" id="leftBackKneeSlide" min="-10" max="10"/></div>
+            <div class="control"><label>Paw</label><input type="range" id="leftBackPawSlide" min="-10" max="10"/></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- scripts -->
+<script src="lib/webgl-utils.js"></script>
+<script src="lib/webgl-debug.js"></script>
+<script src="lib/cuon-utils.js"></script>
+<script src="lib/cuon-matrix-cse160.js"></script>
+<script src="Circle.js"></script>
+<script src="Triangle.js"></script>
+<script src="Point.js"></script>
+<script src="Cube.js"></script>
+<script src="Cone.js"></script>
+<script src="drawBlockyAnimal.js"></script>
+<script src="BlockyAnimal.js"></script>
+</body>
 </html>

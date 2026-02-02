@@ -121,6 +121,11 @@ let front_body_angle = 0;
 let back_body_angle = 0;
 let middle_body_angle = 0;
 
+let g_leftBackPawAngle = 0;
+let g_leftFrontPawAngle = 0;
+let g_rightBackPawAngle = 0;
+let g_rightFrontPawAngle = 0;
+
 
 
 
@@ -142,6 +147,11 @@ function addActionsForHtmlUI(){
   document.getElementById('leftBackKneeSlide').addEventListener('mousemove', function() { g_leftBackKneeAngle = this.value; renderScene();});
   document.getElementById('rightFrontKneeSlide').addEventListener('mousemove', function() { g_rightFrontKneeAngle = this.value; renderScene();});
   document.getElementById('rightBackKneeSlide').addEventListener('mousemove', function() { g_rightBackKneeAngle = this.value; renderScene();});
+
+  document.getElementById('rightFrontPawSlide').addEventListener('mousemove', function() { g_rightFrontPawAngle = this.value; renderScene();});
+  document.getElementById('rightBackPawSlide').addEventListener('mousemove', function() { g_rightBackPawAngle = this.value; renderScene();});
+  document.getElementById('leftFrontPawSlide').addEventListener('mousemove', function() { g_leftFrontPawAngle = this.value; renderScene();});
+  document.getElementById('leftBackPawSlide').addEventListener('mousemove', function() { g_leftBackPawAngle = this.value; renderScene();});
 
   document.getElementById('scaleSlide').addEventListener('mousemove', function() { g_animalScale = this.value; renderScene();});
   document.getElementById('tailSlide').addEventListener('mousemove', function() { g_tailAngle = this.value; renderScene();});

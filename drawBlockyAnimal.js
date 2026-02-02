@@ -673,6 +673,7 @@ function renderScene() {
   var backRightPaw = new Cube();
   backRightPaw.color = [1, 1, 1, 1.0];
   backRightPaw.matrix = new Matrix4(backRightLegMat);
+  backRightPaw.matrix.rotate(g_rightBackPawAngle,0,0,1);
   backRightPaw.matrix.translate(0.0, -0.02, 0);
   backRightPaw.matrix.scale(0.07, 0.02, 0.05);
   backRightPaw.render();
@@ -700,6 +701,7 @@ function renderScene() {
   var backLeftPaw = new Cube();
   backLeftPaw.color = [1, 1, 1, 1.0];
   backLeftPaw.matrix = new Matrix4(backLeftLegMat);
+  backLeftPaw.matrix.rotate(g_leftBackPawAngle,0,0,1);
   backLeftPaw.matrix.translate(0.0, -0.02, 0);
   backLeftPaw.matrix.scale(0.07, 0.02, 0.05);
   backLeftPaw.render();
@@ -726,6 +728,7 @@ function renderScene() {
   var frontLeftPaw = new Cube();
   frontLeftPaw.color = [1, 1, 1, 1.0];
   frontLeftPaw.matrix = new Matrix4(frontLeftLegMat);
+  frontLeftPaw.matrix.rotate(g_leftFrontPawAngle,0,0,1);
   frontLeftPaw.matrix.translate(0.0, -0.02, 0);
   frontLeftPaw.matrix.scale(0.07, 0.02, 0.05);
   frontLeftPaw.render();
@@ -752,6 +755,7 @@ function renderScene() {
   var frontRightPaw = new Cube();
   frontRightPaw.color = [1, 1, 1, 1.0];
   frontRightPaw.matrix = new Matrix4(frontRightLegMat);
+  frontRightPaw.matrix.rotate(g_rightFrontPawAngle,0,0,1);
   frontRightPaw.matrix.translate(0.0, -0.02, 0);
   frontRightPaw.matrix.scale(0.07, 0.02, 0.05);
   frontRightPaw.render();
