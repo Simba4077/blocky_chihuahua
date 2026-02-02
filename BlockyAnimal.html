@@ -94,6 +94,19 @@
         justify-content: space-between;
         align-items: center;
       }
+      .note{
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #020c3b38;
+        border: 1px solid rgba(255,255,255,0.08);
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
       #numdot{
         margin: 0;
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -202,9 +215,7 @@
         <div class="header">
           <div>
             <div class="title">Blocky Animal</div>
-            <div class="subtitle">WebGL • joints • keyframes • vibes</div>
           </div>
-          <div class="pill">CSE160</div>
         </div>
 
         <div class="canvasWrap">
@@ -215,6 +226,9 @@
           <div class="hud">
             <div>HUD</div>
             <p id="numdot">XXX</p>
+          </div>
+          <div class="note">
+            <div>Click and drag on the canvas to rotate!</div>
           </div>
         </div>
       </div>
@@ -237,7 +251,7 @@
             </h3>
             <div class="row">
               <div class="control">
-                <label for="scaleSlide">Scale <span>0.5 → 2.0</span></label>
+                <label for="scaleSlide">Zoom <span>0.5 → 2.0</span></label>
                 <input type="range" min="0.5" max="2" step="0.1" value="2" id="scaleSlide" />
               </div>
 
