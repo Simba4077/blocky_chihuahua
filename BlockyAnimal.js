@@ -113,6 +113,10 @@ let g_leftFrontKneeAngle = 0;
 let g_leftBackKneeAngle = 0;
 
 let poke_animation = false;
+let pokeStartTime = 0;
+let g_tongueOut = 0;
+let g_tongueWiggle = 0;
+
 let back_body_angle = 0;
 let middle_body_angle = 0;
 
@@ -154,6 +158,12 @@ function main() {
   addActionsForHtmlUI();
 
   canvas.onmousedown = function (ev) {
+    if(ev.shiftKey){
+      poke_animation = true;
+      pokeStartTime = g_seconds;
+      g_isDragging = false;
+      return;
+    }
     g_isDragging = true;
     g_lastMouseX = ev.clientX;
     g_lastMouseY = ev.clientY;
@@ -258,10 +268,60 @@ function updateAnimationAngles(){
 
     g_tailAngle = 30 * Math.sin(t * 1.3);
   }
-  if(poke_animation){
-    //begging 
+if (poke_animation) {
+  const t = g_seconds - pokeStartTime;
 
+  // timing (seconds)
+  const OUT_TIME  = 0.25;
+  const HOLD_TIME = 0.30;
+  const IN_TIME   = 0.25;
+  const TOTAL     = OUT_TIME + HOLD_TIME + IN_TIME;
+
+  // smooth easing 0..1 -> 0..1
+  const ease = (x) => x * x * (3 - 2 * x);
+
+  if (t < 0) {
+    g_tongueOut = 0;
+    g_tongueWiggle = 0;
+  } 
+  else if (t < OUT_TIME) {
+    // tongue extends (0 -> 1)
+    const u = t / OUT_TIME;
+    g_tongueOut = ease(u);
+
+    // optional: slight head tilt as it extends
+    g_headAngle = -8 * g_tongueOut;
+    g_tongueWiggle = 0;
+  } 
+  else if (t < OUT_TIME + HOLD_TIME) {
+    // hold out + wiggle
+    g_tongueOut = 1;
+
+    // wiggle like a tiny sine (matches walking style)
+    g_tongueWiggle = 0.02 * Math.sin(g_seconds * 30);
+
+    // cute head tilt while tongue is out
+    g_headAngle = -8;
+  } 
+  else if (t < TOTAL) {
+    // retract (1 -> 0)
+    const u = (t - OUT_TIME - HOLD_TIME) / IN_TIME;
+    g_tongueOut = 1 - ease(u);
+
+    g_headAngle = -8 * g_tongueOut;
+    g_tongueWiggle = 0;
+  } 
+  else {
+    // done
+    g_tongueOut = 0;
+    g_tongueWiggle = 0;
+    poke_animation = false;
+
+    // reset head so walking can take over normally
+    // (optional) g_headAngle = 0;
   }
+}
+
 
 }
 

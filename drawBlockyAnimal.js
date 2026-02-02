@@ -544,6 +544,20 @@ function renderScene() {
   headTopJaw.matrix.scale(0.05, 0.05, 0.1);
   headTopJaw.render();
 
+  if (g_tongueOut > 0.001) {
+  var tongue = new Cube();
+  tongue.color = [0.95, 0.4, 0.55, 1.0];
+  tongue.matrix = new Matrix4(headTopJawMat);
+
+  const baseLen = 0.003;
+  const extraLen = 0.06 * g_tongueOut;
+
+  tongue.matrix.translate(0.05, -0.01, 0.04 + g_tongueWiggle);
+  tongue.matrix.scale(baseLen + extraLen+0.08, 0.01, 0.03);
+  tongue.render();
+}
+
+
   var headNose = new Cube();
   headNose.color = [0, 0, 0, 1.0];
   headNose.matrix = new Matrix4(headTopJawMat);
