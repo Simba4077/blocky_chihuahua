@@ -49,7 +49,7 @@ function renderScene() {
   //render ground
   var ground = new Cube();
   ground.color = [.2, .65, .25, 1];
-  ground.matrix.translate(-1.3, -0.33, -0.3);
+  ground.matrix.translate(-1.3, -0.3425, -0.3);
   ground.matrix.scale(3.0, 0.1, 3.0);
   ground.render();
 
