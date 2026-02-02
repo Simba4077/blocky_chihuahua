@@ -49,7 +49,7 @@ function renderScene() {
   //render ground
   var ground = new Cube();
   ground.color = [.2, .65, .25, 1];
-  ground.matrix.translate(-1.3, -0.32, -0.3);
+  ground.matrix.translate(-1.3, -0.33, -0.3);
   ground.matrix.scale(3.0, 0.1, 3.0);
   ground.render();
 
@@ -403,7 +403,8 @@ function renderScene() {
   tailBase1.color = [0.898, 0.827, 0.702, 1.0];
   tailBase1.matrix = new Matrix4(backBodyFrame);
   tailBase1.matrix.translate(-0.05, 0.1, 0.1);
-  tailBase1.matrix.rotate(g_tailAngle, 0, 1, 0);
+  tailBase1.matrix.rotate(g_tailAngle, 1, 0, 0);
+  tailBase1.matrix.translate(0.03, -0.02, -0.03);
   var tailBase1FrameMat = new Matrix4(tailBase1.matrix);
   tailBase1.matrix.scale(0.05, 0.05, 0.075);
   tailBase1.render();
@@ -411,7 +412,9 @@ function renderScene() {
   var tailBase2 = new Cube();
   tailBase2.color = [0.824, 0.706, 0.549, 1.0];
   tailBase2.matrix = new Matrix4(tailBase1FrameMat);
+
   tailBase2.matrix.translate(-0.02, 0.02, 0.01);
+
   var tailBase2FrameMat = new Matrix4(tailBase2.matrix);
   tailBase2.matrix.scale(0.02, 0.04, 0.06);
   tailBase2.render();
@@ -650,10 +653,10 @@ function renderScene() {
   var backRightLeg1 = new Cube();
   backRightLeg1.color = [0.824, 0.706, 0.549, 1.0];
   backRightLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
-  backRightLeg1.matrix.translate(0.0, -0.025, 0.0);
+  backRightLeg1.matrix.translate(0.0, -0.03, 0.0);
   backRightLeg1.matrix.rotate(g_rightBackShoulderAngle, 0, 0, 1);
   var backRightKnee = new Matrix4(backRightLeg1.matrix);
-  backRightLeg1.matrix.scale(0.05, 0.05, 0.05);
+  backRightLeg1.matrix.scale(0.05, 0.029, 0.05);
   backRightLeg1.render();
 
   var backRightLeg2 = new Cube();
@@ -669,7 +672,7 @@ function renderScene() {
   backRightPaw.color = [1, 1, 1, 1.0];
   backRightPaw.matrix = new Matrix4(backRightLegMat);
   backRightPaw.matrix.translate(0.0, -0.02, 0);
-  backRightPaw.matrix.scale(0.07, 0.025, 0.05);
+  backRightPaw.matrix.scale(0.07, 0.02, 0.05);
   backRightPaw.render();
 
   // back left leg | parent: backBodyUnderbellyFrame
@@ -679,7 +682,7 @@ function renderScene() {
   backLeftLeg1.matrix.translate(0.0, -0.025, 0.2);
   backLeftLeg1.matrix.rotate(g_leftBackShoulderAngle, 0, 0, 1);
   var backLeftKnee = new Matrix4(backLeftLeg1.matrix);
-  backLeftLeg1.matrix.scale(0.05, 0.05, 0.05);
+  backLeftLeg1.matrix.scale(0.05, 0.029, 0.05);
   backLeftLeg1.render();
 
   var backLeftLeg2 = new Cube();
@@ -695,7 +698,7 @@ function renderScene() {
   backLeftPaw.color = [1, 1, 1, 1.0];
   backLeftPaw.matrix = new Matrix4(backLeftLegMat);
   backLeftPaw.matrix.translate(0.0, -0.02, 0);
-  backLeftPaw.matrix.scale(0.07, 0.025, 0.05);
+  backLeftPaw.matrix.scale(0.07, 0.02, 0.05);
   backLeftPaw.render();
 
   // front left leg | parent: frontBodyFrame
@@ -721,7 +724,7 @@ function renderScene() {
   frontLeftPaw.color = [1, 1, 1, 1.0];
   frontLeftPaw.matrix = new Matrix4(frontLeftLegMat);
   frontLeftPaw.matrix.translate(0.0, -0.02, 0);
-  frontLeftPaw.matrix.scale(0.07, 0.025, 0.05);
+  frontLeftPaw.matrix.scale(0.07, 0.02, 0.05);
   frontLeftPaw.render();
 
   // front right leg | parent: frontBodyFrame
@@ -747,7 +750,7 @@ function renderScene() {
   frontRightPaw.color = [1, 1, 1, 1.0];
   frontRightPaw.matrix = new Matrix4(frontRightLegMat);
   frontRightPaw.matrix.translate(0.0, -0.02, 0);
-  frontRightPaw.matrix.scale(0.07, 0.025, 0.05);
+  frontRightPaw.matrix.scale(0.07, 0.02, 0.05);
   frontRightPaw.render();
 
   // ---------------------------------------
