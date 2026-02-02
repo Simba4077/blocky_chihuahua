@@ -654,10 +654,11 @@ function renderScene() {
   var backRightLeg1 = new Cube();
   backRightLeg1.color = [0.824, 0.706, 0.549, 1.0];
   backRightLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
-  backRightLeg1.matrix.translate(0.0, -0.03, 0.0);
+  backRightLeg1.matrix.translate(0.0, -0.043, 0.0);
   backRightLeg1.matrix.rotate(g_rightBackShoulderAngle, 0, 0, 1);
+  backRightLeg1.matrix.translate(0.0, 0.001, 0.0);
   var backRightKnee = new Matrix4(backRightLeg1.matrix);
-  backRightLeg1.matrix.scale(0.05, 0.029, 0.05);
+  backRightLeg1.matrix.scale(0.05, 0.04, 0.05);
   backRightLeg1.render();
 
   var backRightLeg2 = new Cube();
@@ -680,10 +681,11 @@ function renderScene() {
   var backLeftLeg1 = new Cube();
   backLeftLeg1.color = [0.824, 0.706, 0.549, 1.0];
   backLeftLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
-  backLeftLeg1.matrix.translate(0.0, -0.025, 0.2);
+  backLeftLeg1.matrix.translate(0.0, -0.043, 0.2);
   backLeftLeg1.matrix.rotate(g_leftBackShoulderAngle, 0, 0, 1);
+  backLeftLeg1.matrix.translate(0.0, 0.001, 0.0);
   var backLeftKnee = new Matrix4(backLeftLeg1.matrix);
-  backLeftLeg1.matrix.scale(0.05, 0.029, 0.05);
+  backLeftLeg1.matrix.scale(0.05, 0.04, 0.05);
   backLeftLeg1.render();
 
   var backLeftLeg2 = new Cube();
@@ -706,7 +708,7 @@ function renderScene() {
   var frontLeftLeg1 = new Cube();
   frontLeftLeg1.color = [0.824, 0.706, 0.549, 1.0];
   frontLeftLeg1.matrix = new Matrix4(frontBodyFrame);
-  frontLeftLeg1.matrix.translate(0.1, -0.05, 0.2);
+  frontLeftLeg1.matrix.translate(0.1, -0.06, 0.2);
   frontLeftLeg1.matrix.rotate(g_leftFrontShoulderAngle, 0, 0, 1);
   var frontLeftKnee = new Matrix4(frontLeftLeg1.matrix);
   frontLeftLeg1.matrix.scale(0.05, 0.08, 0.05);
@@ -732,7 +734,7 @@ function renderScene() {
   var frontRightLeg = new Cube();
   frontRightLeg.color = [0.824, 0.706, 0.549, 1.0];
   frontRightLeg.matrix = new Matrix4(frontBodyFrame);
-  frontRightLeg.matrix.translate(0.1, -0.05, 0.025);
+  frontRightLeg.matrix.translate(0.1, -0.06, 0.025);
   frontRightLeg.matrix.rotate(g_rightFrontShoulderAngle, 0, 0, 1);
   var frontRightKnee = new Matrix4(frontRightLeg.matrix);
   frontRightLeg.matrix.scale(0.05, 0.08, 0.05);

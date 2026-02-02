@@ -256,16 +256,16 @@ function updateAnimationAngles(){
 
     g_headAngle = 10 * Math.sin(t * 1.2);
 
-    g_leftFrontShoulderAngle  = 15 * Math.sin(t);
-    g_rightBackShoulderAngle  = 15 * Math.sin(t);
-    g_rightFrontShoulderAngle = -15 * Math.sin(t);
-    g_leftBackShoulderAngle   = -15 * Math.sin(t);
+    g_leftFrontShoulderAngle  = 10 * Math.sin(t);
+    g_rightBackShoulderAngle  = 10 * Math.sin(t);
+    g_rightFrontShoulderAngle = -10 * Math.sin(t);
+    g_leftBackShoulderAngle   = -10 * Math.sin(t);
 
     const kneeLag = Math.PI / 3;
-    g_leftFrontKneeAngle  = 8 * Math.sin(t + kneeLag);
-    g_rightBackKneeAngle  = 8 * Math.sin(t + kneeLag);
-    g_rightFrontKneeAngle = 8 * Math.sin(t + kneeLag + Math.PI);
-    g_leftBackKneeAngle   = 8 * Math.sin(t + kneeLag + Math.PI);
+    g_leftFrontKneeAngle  = 20 * Math.sin(t + kneeLag);
+    g_rightBackKneeAngle  = 20 * Math.sin(t + kneeLag);
+    g_rightFrontKneeAngle = 20 * Math.sin(t + kneeLag + Math.PI);
+    g_leftBackKneeAngle   = 20 * Math.sin(t + kneeLag + Math.PI);
 
     middle_body_angle = 2 * Math.sin(t * 1.3);
     front_body_angle = 2 * Math.sin(t * 1.3 + Math.PI / 6);
