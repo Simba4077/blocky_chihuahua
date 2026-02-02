@@ -92,9 +92,14 @@ let g_selectedColor=[1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 5;
 let g_animalScale = 2;
 let g_selectedType = POINT;
-let g_globalAngle = 0;
+let g_globalAngleY = 0;
+let g_globalAngleX = 0;
+let g_isDragging = false;
+let g_lastMouseX = 0;
+let g_lastMouseY = 0;
 let g_headAngle = 0;
 let g_walkingAnimation = false;
+const mouse_sensitivity = .5;
 
 let g_rightFrontShoulderAngle = 0;
 let g_rightBackShoulderAngle = 0;
@@ -143,10 +148,37 @@ function main() {
 
   //set up actions for HTML UI elements
   addActionsForHtmlUI();
- 
-  // Register function (event handler) to be called on a mouse press
-  canvas.onmousedown = click;
-  canvas.onmousemove = function(ev) { if (ev.buttons == 1){ click(ev) } };
+
+  canvas.onmousedown = function (ev) {
+    g_isDragging = true;
+    g_lastMouseX = ev.clientX;
+    g_lastMouseY = ev.clientY;
+    click(ev);
+  };
+
+  canvas.onmouseup = function () {
+    g_isDragging = false;
+  };
+
+  canvas.onmouseleave = function () {
+    g_isDragging = false;
+  };
+
+  canvas.onmousemove = function (ev) {
+    if (!g_isDragging) return;
+
+    const dx = ev.clientX - g_lastMouseX;
+    const dy = ev.clientY - g_lastMouseY;
+
+    g_globalAngleY += dx * mouse_sensitivity; // x controls yaw
+    g_globalAngleX += dy * mouse_sensitivity; // y controls pitch
+
+    g_globalAngleX = Math.max(-89, Math.min(89, g_globalAngleX));
+
+    g_lastMouseX = ev.clientX;
+    g_lastMouseY = ev.clientY;
+  };
+
 
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);

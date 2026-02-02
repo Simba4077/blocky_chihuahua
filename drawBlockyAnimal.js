@@ -4,7 +4,7 @@ function renderScene() {
   const startTime = performance.now();
 
   // global rotation
-  const globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0).scale(g_animalScale, g_animalScale, g_animalScale);
+  const globalRotMat = new Matrix4().rotate(g_globalAngleX, 1, 0, 0).rotate(g_globalAngleY, 0, 1, 0).scale(g_animalScale, g_animalScale, g_animalScale);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   // Clear <canvas> (ONLY ONCE)
