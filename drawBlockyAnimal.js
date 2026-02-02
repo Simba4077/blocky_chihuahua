@@ -553,7 +553,7 @@ function renderScene() {
   const extraLen = 0.06 * g_tongueOut;
 
   tongue.matrix.translate(0.05, -0.01, 0.04 + g_tongueWiggle);
-  tongue.matrix.scale(baseLen + extraLen+0.08, 0.01, 0.03);
+  tongue.matrix.scale(baseLen + extraLen, 0.01, 0.03);
   tongue.render();
 }
 

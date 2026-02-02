@@ -304,7 +304,6 @@ if (poke_animation) {
     g_headAngle = -8;
   } 
   else if (t < TOTAL) {
-    // retract (1 -> 0)
     const u = (t - OUT_TIME - HOLD_TIME) / IN_TIME;
     g_tongueOut = 1 - ease(u);
 
