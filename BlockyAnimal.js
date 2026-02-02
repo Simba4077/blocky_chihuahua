@@ -112,6 +112,10 @@ let g_rightBackKneeAngle = 0;
 let g_leftFrontKneeAngle = 0;
 let g_leftBackKneeAngle = 0;
 
+let poke_animation = false;
+let back_body_angle = 0;
+let middle_body_angle = 0;
+
 
 
 
@@ -137,6 +141,7 @@ function addActionsForHtmlUI(){
   document.getElementById('scaleSlide').addEventListener('mousemove', function() { g_animalScale = this.value; renderScene();});
   document.getElementById('tailSlide').addEventListener('mousemove', function() { g_tailAngle = this.value; renderScene();});
 }
+
 
 function main() {
   // Retrieve <canvas> element
@@ -236,9 +241,9 @@ function convertCoordinatesEventToGL(ev) {
 
 function updateAnimationAngles(){
   if (g_walkingAnimation) {
-    const t = g_seconds * 8;
+    const t = g_seconds * 4;
 
-    g_headAngle = 10 * Math.sin(t * 0.5);
+    g_headAngle = 10 * Math.sin(t * 1.2);
 
     g_leftFrontShoulderAngle  = 15 * Math.sin(t);
     g_rightBackShoulderAngle  = 15 * Math.sin(t);
@@ -251,7 +256,11 @@ function updateAnimationAngles(){
     g_rightFrontKneeAngle = 8 * Math.sin(t + kneeLag + Math.PI);
     g_leftBackKneeAngle   = 8 * Math.sin(t + kneeLag + Math.PI);
 
-    g_tailAngle = 30 * Math.sin(t * 0.9);
+    g_tailAngle = 30 * Math.sin(t * 1.3);
+  }
+  if(poke_animation){
+    //begging 
+
   }
 
 }
