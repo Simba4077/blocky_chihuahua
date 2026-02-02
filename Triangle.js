@@ -76,21 +76,23 @@ function drawTriangle(vertices) {
   return n;
 }
 
+let g_triangle3DBuffer = null;
 function drawTriangle3D(vertices) {
   // var vertices = new Float32Array([
   //   0, 0.5,   -0.5, -0.5,   0.5, -0.5
   // ]);
   var n = 3; // The number of vertices
 
-  // Create a buffer object
-  var vertexBuffer = gl.createBuffer();
-  if (!vertexBuffer) {
-    console.log('Failed to create the buffer object');
-    return -1;
+  if(g_triangle3DBuffer==null){
+    g_triangle3DBuffer = gl.createBuffer();
+    if (!g_triangle3DBuffer) {
+      console.log('Failed to create the buffer object');
+      return -1;
+    }
   }
 
   // Bind the buffer object to target
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bindBuffer(gl.ARRAY_BUFFER, g_triangle3DBuffer);
   // Write date into the buffer object
   // gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.DYNAMIC_DRAW);

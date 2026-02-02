@@ -93,7 +93,7 @@ let g_selectedSize = 5;
 let g_selectedType = POINT;
 let g_globalAngle = 0;
 let g_headAngle = 0;
-let g_headAnimation = false;
+let g_walkingAnimation = false;
 
 let g_rightFrontKneeAngle = 0;
 let g_rightBackKneeAngle = 0;
@@ -106,8 +106,8 @@ let g_tailAngle = 0;
 
 function addActionsForHtmlUI(){
   //button events
-  document.getElementById('animationHeadOnButton').onclick = function(){g_headAnimation=true;};
-  document.getElementById('animationHeadOffButton').onclick = function(){g_headAnimation=false;};
+  document.getElementById('animationWalkingOnButton').onclick = function(){g_walkingAnimation=true;};
+  document.getElementById('animationWalkingOffButton').onclick = function(){g_walkingAnimation=false;};
   document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes();});
   document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes();});
 
@@ -190,7 +190,7 @@ function convertCoordinatesEventToGL(ev) {
 }
 
 function updateAnimationAngles(){
-  if(g_headAnimation){
+  if(g_walkingAnimation){
     g_headAngle = 10*Math.sin(g_seconds);
     g_leftBackKneeAngle = 10*Math.sin((g_seconds*5));
     g_leftFrontKneeAngle = -10*Math.sin(g_seconds*5);
@@ -211,7 +211,6 @@ function renderAllShapes(){
   
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  gl.clear(gl.COLOR_BUFFER_BIT);
 
 //---------------------------------------
 // draw the body (3 pieces: front, back, middle)
