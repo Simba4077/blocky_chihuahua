@@ -90,6 +90,7 @@ const CIRCLE = 2;
 // Global variables related to UI elements
 let g_selectedColor=[1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 5;
+let g_animalScale = 2;
 let g_selectedType = POINT;
 let g_globalAngle = 0;
 let g_headAngle = 0;
@@ -129,6 +130,7 @@ function addActionsForHtmlUI(){
   document.getElementById('rightFrontKneeSlide').addEventListener('mousemove', function() { g_rightFrontKneeAngle = this.value; renderScene();});
   document.getElementById('rightBackKneeSlide').addEventListener('mousemove', function() { g_rightBackKneeAngle = this.value; renderScene();});
 
+  document.getElementById('scaleSlide').addEventListener('mousemove', function() { g_animalScale = this.value; renderScene();});
   document.getElementById('tailSlide').addEventListener('mousemove', function() { g_tailAngle = this.value; renderScene();});
 }
 
