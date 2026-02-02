@@ -1,4 +1,26 @@
 //drawBlockAnimal.js
+function drawCloud(x,y,z){
+    var c1 = new Cube();
+    c1.color = [1.0, 1.0, 1.0, 1.0];
+    c1.matrix.translate(x,y,z);
+    c1.matrix.scale(0.3,0.12,0.18);
+    c1.render();
+
+    var c2 = new Cube();
+    c2.color = [1.0, 1.0, 1.0, 1.0];
+    c2.matrix.translate(x+0.2,y+0.05,z);
+    c2.matrix.scale(0.25,0.1,0.16);
+    c2.render();
+
+    var c3 = new Cube();
+    c3.color = [1.0, 1.0, 1.0, 1.0];
+    c3.matrix.translate(x+0.38,y,z);
+    c3.matrix.scale(0.28,0.11,0.18);
+    c3.render();
+}
+function cloudwrapping(basex){
+    return((basex + cloudOffset+CLOUD_TILE/2)%CLOUD_TILE)-CLOUD_TILE/2;
+}
 function renderScene() {
   // check the time at the start of function
   const startTime = performance.now();
@@ -14,6 +36,24 @@ function renderScene() {
   // draw the body (3 pieces: front, middle, back)
   // ---------------------------------------
 
+  //render clouds
+  drawCloud(cloudwrapping(-1.2+3), 0.8, .5);
+  drawCloud(cloudwrapping(0.3+3), 0.9, -.2);
+  drawCloud(cloudwrapping(.6+3), 0.4, 1.1);
+  drawCloud(cloudwrapping(1.0+3), 0.75, .7);
+  drawCloud(cloudwrapping(1.6+3), 0.35, -.3);
+  drawCloud(cloudwrapping(-.3+3), 0.6, .3);
+  drawCloud(cloudwrapping(2.4+3), 0.758, -.8);
+
+
+  //render ground
+  var ground = new Cube();
+  ground.color = [.2, .65, .25, 1];
+  ground.matrix.translate(-1.3, -0.32, -0.3);
+  ground.matrix.scale(3.0, 0.1, 3.0);
+  ground.render();
+
+  
   // front body cube | parent: none (origin)
   var frontBody = new Cube();
   frontBody.color = [0.898, 0.827, 0.702, 1.0];

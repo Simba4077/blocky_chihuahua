@@ -180,7 +180,8 @@ function main() {
 
 
   // Specify the color for clearing <canvas>
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(0.53, 0.81, 0.92, 1.0); // sky blue
+
 
   requestAnimationFrame(tick);
 }
@@ -188,8 +189,13 @@ function main() {
 var g_startTime = performance.now()/1000.0;
 var g_seconds = performance.now()/1000.0 - g_startTime;
 
+let cloudOffset = 0;
+const CLOUD_SPEED = 0.2;
+const CLOUD_TILE = 5;
+
 function tick() {
   g_seconds = performance.now()/1000.0 - g_startTime;
+  cloudOffset = (-g_seconds*CLOUD_SPEED) % CLOUD_TILE;
   updateAnimationAngles();
   renderScene();
   requestAnimationFrame(tick);
