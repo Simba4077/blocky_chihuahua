@@ -95,11 +95,19 @@ let g_globalAngle = 0;
 let g_headAngle = 0;
 let g_walkingAnimation = false;
 
+let g_rightFrontShoulderAngle = 0;
+let g_rightBackShoulderAngle = 0;
+let g_leftFrontShoulderAngle = 0;
+let g_leftBackShoulderAngle = 0;
+let g_tailAngle = 0;
+
 let g_rightFrontKneeAngle = 0;
 let g_rightBackKneeAngle = 0;
 let g_leftFrontKneeAngle = 0;
 let g_leftBackKneeAngle = 0;
-let g_tailAngle = 0;
+
+
+
 
 
 
@@ -111,10 +119,15 @@ function addActionsForHtmlUI(){
   document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderScene();});
   document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderScene();});
 
-  document.getElementById('rightFrontKneeSlide').addEventListener('mousemove', function() { g_rightFrontKneeAngle = this.value; renderScene();});
-  document.getElementById('rightBackKneeSlide').addEventListener('mousemove', function() { g_rightBackKneeAngle = this.value; renderScene();});
+  document.getElementById('rightFrontShoulderSlide').addEventListener('mousemove', function() { g_rightFrontShoulderAngle = this.value; renderScene();});
+  document.getElementById('rightBackShoulderSlide').addEventListener('mousemove', function() { g_rightBackShoulderAngle = this.value; renderScene();});
+  document.getElementById('leftFrontShoulderSlide').addEventListener('mousemove', function() { g_leftFrontShoulderAngle = this.value; renderScene();});
+  document.getElementById('leftBackShoulderSlide').addEventListener('mousemove', function() { g_leftBackShoulderAngle = this.value; renderScene();});
+
   document.getElementById('leftFrontKneeSlide').addEventListener('mousemove', function() { g_leftFrontKneeAngle = this.value; renderScene();});
   document.getElementById('leftBackKneeSlide').addEventListener('mousemove', function() { g_leftBackKneeAngle = this.value; renderScene();});
+  document.getElementById('rightFrontKneeSlide').addEventListener('mousemove', function() { g_rightFrontKneeAngle = this.value; renderScene();});
+  document.getElementById('rightBackKneeSlide').addEventListener('mousemove', function() { g_rightBackKneeAngle = this.value; renderScene();});
 
   document.getElementById('tailSlide').addEventListener('mousemove', function() { g_tailAngle = this.value; renderScene();});
 }
@@ -183,14 +196,25 @@ function convertCoordinatesEventToGL(ev) {
 }
 
 function updateAnimationAngles(){
-  if(g_walkingAnimation){
-    g_headAngle = 10*Math.sin(g_seconds);
-    g_leftBackKneeAngle = 10*Math.sin((g_seconds*5));
-    g_leftFrontKneeAngle = -10*Math.sin(g_seconds*5);
-    g_rightBackKneeAngle = -10*Math.sin(g_seconds*5);
-    g_rightFrontKneeAngle = 10*Math.sin(g_seconds*5);
-    g_tailAngle = 15*Math.sin(g_seconds*3);
+  if (g_walkingAnimation) {
+    const t = g_seconds * 8;
+
+    g_headAngle = 10 * Math.sin(t * 0.5);
+
+    g_leftFrontShoulderAngle  = 15 * Math.sin(t);
+    g_rightBackShoulderAngle  = 15 * Math.sin(t);
+    g_rightFrontShoulderAngle = -15 * Math.sin(t);
+    g_leftBackShoulderAngle   = -15 * Math.sin(t);
+
+    const kneeLag = Math.PI / 3;
+    g_leftFrontKneeAngle  = 8 * Math.sin(t + kneeLag);
+    g_rightBackKneeAngle  = 8 * Math.sin(t + kneeLag);
+    g_rightFrontKneeAngle = 8 * Math.sin(t + kneeLag + Math.PI);
+    g_leftBackKneeAngle   = 8 * Math.sin(t + kneeLag + Math.PI);
+
+    g_tailAngle = 30 * Math.sin(t * 0.9);
   }
+
 }
 
 

@@ -641,7 +641,7 @@ function renderScene() {
   backRightLeg1.color = [0.824, 0.706, 0.549, 1.0];
   backRightLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
   backRightLeg1.matrix.translate(0.0, -0.025, 0.0);
-  backRightLeg1.matrix.rotate(g_rightBackKneeAngle, 0, 0, 1);
+  backRightLeg1.matrix.rotate(g_rightBackShoulderAngle, 0, 0, 1);
   var backRightKnee = new Matrix4(backRightLeg1.matrix);
   backRightLeg1.matrix.scale(0.05, 0.05, 0.05);
   backRightLeg1.render();
@@ -649,7 +649,8 @@ function renderScene() {
   var backRightLeg2 = new Cube();
   backRightLeg2.color = [0.824, 0.706, 0.549, 1.0];
   backRightLeg2.matrix = new Matrix4(backRightKnee);
-  backRightLeg2.matrix.translate(0, -0.07, 0.0);
+  backRightLeg2.matrix.rotate(g_rightBackKneeAngle, 0, 0, 1);
+  backRightLeg2.matrix.translate(0, -0.05, 0.0);
   var backRightLegMat = new Matrix4(backRightLeg2.matrix);
   backRightLeg2.matrix.scale(0.05, 0.07, 0.05);
   backRightLeg2.render();
@@ -666,7 +667,7 @@ function renderScene() {
   backLeftLeg1.color = [0.824, 0.706, 0.549, 1.0];
   backLeftLeg1.matrix = new Matrix4(backBodyUnderbellyFrame);
   backLeftLeg1.matrix.translate(0.0, -0.025, 0.2);
-  backLeftLeg1.matrix.rotate(g_leftBackKneeAngle, 0, 0, 1);
+  backLeftLeg1.matrix.rotate(g_leftBackShoulderAngle, 0, 0, 1);
   var backLeftKnee = new Matrix4(backLeftLeg1.matrix);
   backLeftLeg1.matrix.scale(0.05, 0.05, 0.05);
   backLeftLeg1.render();
@@ -674,7 +675,8 @@ function renderScene() {
   var backLeftLeg2 = new Cube();
   backLeftLeg2.color = [0.824, 0.706, 0.549, 1.0];
   backLeftLeg2.matrix = new Matrix4(backLeftKnee);
-  backLeftLeg2.matrix.translate(0.0, -0.07, 0.0);
+  backLeftLeg2.matrix.rotate(g_leftBackKneeAngle, 0, 0, 1);
+  backLeftLeg2.matrix.translate(0.0, -0.05, 0.0);
   var backLeftLegMat = new Matrix4(backLeftLeg2.matrix);
   backLeftLeg2.matrix.scale(0.05, 0.07, 0.05);
   backLeftLeg2.render();
@@ -691,7 +693,7 @@ function renderScene() {
   frontLeftLeg1.color = [0.824, 0.706, 0.549, 1.0];
   frontLeftLeg1.matrix = new Matrix4(frontBodyFrame);
   frontLeftLeg1.matrix.translate(0.1, -0.05, 0.2);
-  frontLeftLeg1.matrix.rotate(g_leftFrontKneeAngle, 0, 0, 1);
+  frontLeftLeg1.matrix.rotate(g_leftFrontShoulderAngle, 0, 0, 1);
   var frontLeftKnee = new Matrix4(frontLeftLeg1.matrix);
   frontLeftLeg1.matrix.scale(0.05, 0.08, 0.05);
   frontLeftLeg1.render();
@@ -699,7 +701,8 @@ function renderScene() {
   var frontLeftLeg2 = new Cube();
   frontLeftLeg2.color = [0.824, 0.706, 0.549, 1.0];
   frontLeftLeg2.matrix = new Matrix4(frontLeftKnee);
-  frontLeftLeg2.matrix.translate(0, -0.07, 0.0);
+  frontLeftLeg2.matrix.rotate(g_leftFrontKneeAngle, 0, 0, 1);
+  frontLeftLeg2.matrix.translate(0, -0.05, 0.0);
   var frontLeftLegMat = new Matrix4(frontLeftLeg2.matrix);
   frontLeftLeg2.matrix.scale(0.05, 0.07, 0.05);
   frontLeftLeg2.render();
@@ -716,7 +719,7 @@ function renderScene() {
   frontRightLeg.color = [0.824, 0.706, 0.549, 1.0];
   frontRightLeg.matrix = new Matrix4(frontBodyFrame);
   frontRightLeg.matrix.translate(0.1, -0.05, 0.025);
-  frontRightLeg.matrix.rotate(g_rightFrontKneeAngle, 0, 0, 1);
+  frontRightLeg.matrix.rotate(g_rightFrontShoulderAngle, 0, 0, 1);
   var frontRightKnee = new Matrix4(frontRightLeg.matrix);
   frontRightLeg.matrix.scale(0.05, 0.08, 0.05);
   frontRightLeg.render();
@@ -724,7 +727,8 @@ function renderScene() {
   var frontRightLeg2 = new Cube();
   frontRightLeg2.color = [0.824, 0.706, 0.549, 1.0];
   frontRightLeg2.matrix = new Matrix4(frontRightKnee);
-  frontRightLeg2.matrix.translate(0, -0.07, 0.0);
+  frontRightLeg2.matrix.rotate(g_rightFrontKneeAngle, 0, 0, 1);
+  frontRightLeg2.matrix.translate(0, -0.05, 0.0);
   var frontRightLegMat = new Matrix4(frontRightLeg2.matrix);
   frontRightLeg2.matrix.scale(0.05, 0.07, 0.05);
   frontRightLeg2.render();
@@ -745,7 +749,7 @@ function renderScene() {
 
   const duration = performance.now() - startTime;
   sendTextToHTML(
-    " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000 / duration),
+    " ms: " + Math.floor(duration) + " fps: " + Math.floor(1000 / duration),
     "numdot"
   );
 }
