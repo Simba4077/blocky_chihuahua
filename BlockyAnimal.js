@@ -122,7 +122,6 @@ function addActionsForHtmlUI(){
   //button events
   document.getElementById('animationWalkingOnButton').onclick = function(){g_walkingAnimation=true;};
   document.getElementById('animationWalkingOffButton').onclick = function(){g_walkingAnimation=false;};
-  document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderScene();});
   document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderScene();});
 
   document.getElementById('rightFrontShoulderSlide').addEventListener('mousemove', function() { g_rightFrontShoulderAngle = this.value; renderScene();});
