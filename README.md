@@ -7,3 +7,4 @@ ChatGPT Logs:
 
 I used GPT for formatting advice, debugging, cleaning up/prettifying the UI, some animation help.  
 
+I also used the helper videos in the assignment to get the first couple of points.  
