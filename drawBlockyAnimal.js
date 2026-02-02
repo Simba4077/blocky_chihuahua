@@ -760,13 +760,6 @@ function renderScene() {
   frontRightPaw.matrix.scale(0.07, 0.02, 0.05);
   frontRightPaw.render();
 
-  // ---------------------------------------
-  // reference cube
-  // ---------------------------------------
-  var ref = new Cube();
-  ref.color = [1, 1.0, 1.0, 0.02];
-  ref.render();
-
   const duration = performance.now() - startTime;
   sendTextToHTML(
     " ms: " + Math.floor(duration) + " fps: " + Math.floor(1000 / duration),
