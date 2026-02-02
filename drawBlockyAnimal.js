@@ -57,6 +57,7 @@ function renderScene() {
   // front body cube | parent: none (origin)
   var frontBody = new Cube();
   frontBody.color = [0.898, 0.827, 0.702, 1.0];
+  frontBody.matrix.rotate(front_body_angle, 0, 1, 0);
   frontBody.matrix.translate(-0.05, -0.1, 0.0);
   var frontBodyFrame = new Matrix4(frontBody.matrix);
   frontBody.matrix.scale(0.18, 0.18, 0.28);
@@ -163,7 +164,7 @@ function renderScene() {
   middleBody.color = [0.898, 0.827, 0.702, 1.0];
   middleBody.matrix = new Matrix4(frontBodyFrame);
   middleBody.matrix.translate(-0.2, -0.005, 0.0);
-  middleBody.matrix.rotate(middle_body_angle, 0, 0, 1);
+  middleBody.matrix.rotate(middle_body_angle, 0, 1, 0);
   var middleBodyFrame = new Matrix4(middleBody.matrix);
   middleBody.matrix.scale(0.2, 0.2, 0.3);
   middleBody.render();
@@ -268,7 +269,7 @@ function renderScene() {
   var backBody = new Cube();
   backBody.color = [0.898, 0.827, 0.702, 1.0];
   backBody.matrix = new Matrix4(middleBodyFrame);
-  backBody.matrix.rotate(back_body_angle, 0, 0, 1);
+  backBody.matrix.rotate(back_body_angle, 0, 1, 0);
   backBody.matrix.translate(-0.15, 0.0, 0.03);
   var backBodyFrame = new Matrix4(backBody.matrix);
   backBody.matrix.scale(0.15, 0.15, 0.25);

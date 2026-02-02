@@ -117,6 +117,7 @@ let pokeStartTime = 0;
 let g_tongueOut = 0;
 let g_tongueWiggle = 0;
 
+let front_body_angle = 0;
 let back_body_angle = 0;
 let middle_body_angle = 0;
 
@@ -265,6 +266,10 @@ function updateAnimationAngles(){
     g_rightBackKneeAngle  = 8 * Math.sin(t + kneeLag);
     g_rightFrontKneeAngle = 8 * Math.sin(t + kneeLag + Math.PI);
     g_leftBackKneeAngle   = 8 * Math.sin(t + kneeLag + Math.PI);
+
+    middle_body_angle = 2 * Math.sin(t * 1.3);
+    front_body_angle = 2 * Math.sin(t * 1.3 + Math.PI / 6);
+    back_body_angle = 2 * Math.sin(t * 1.3 + Math.PI / 6);
 
     g_tailAngle = 30 * Math.sin(t * 1.3);
   }
